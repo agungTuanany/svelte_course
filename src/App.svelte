@@ -57,7 +57,10 @@
 	<h1>Hello {uppercaseName}, your age is {age}!</h1>
 	<button on:click="{incrementAge}">Change Age</button>
 	<!-- <button on:click="{changeName}">Change Name</button> -->
-	<input type="text" value="{name}" on:input="{nameInput}" />
+	<!-- <input type="text" value="{name}" on:input="{nameInput}" /> -->
+
+	<!-- XXX This way is NOT RECOMMENDED, cause breaking unidirectional data overflow. In most cases data flow should be clear -->
+	<input type="text" bind:value="{name}" />
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
