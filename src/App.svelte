@@ -69,7 +69,7 @@
 	<!-- XXX This way is NOT RECOMMENDED, cause breaking unidirectional data overflow. In most cases data flow should be clear -->
 	<input type="text" bind:value="{name}" />
 
-	<ContactCard />
+	<ContactCard userName="{name}" />
 
 	<br>
 	<br>
