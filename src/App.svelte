@@ -1,4 +1,11 @@
+<!--
+	Side note:
+	Svelte apps are built from multiple "Components" -UI building blocks -UI building blocks.
+	It's the same philosophy as in React, Angular & Vue
+-->
 <script>
+	import ContactCard from "./ContactCard.svelte"
+
 	let name = "John"
 	let age = 30
 
@@ -61,6 +68,11 @@
 
 	<!-- XXX This way is NOT RECOMMENDED, cause breaking unidirectional data overflow. In most cases data flow should be clear -->
 	<input type="text" bind:value="{name}" />
+
+	<ContactCard />
+
+	<br>
+	<br>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
