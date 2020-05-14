@@ -4,9 +4,15 @@
 
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
 	// Label statement in svelte
-
 	$: uppercaseName = name.toUpperCase ()
 
+	$: console.log (name)
+
+	// using a dynamic Label statement in with if statement
+	$: if (name === "John Doe") {
+		console.log ("It changes the age")
+		age = 25
+	}
 
 	function incrementAge () {
 		age = age + 1
