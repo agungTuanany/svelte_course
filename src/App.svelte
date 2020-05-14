@@ -8,7 +8,7 @@
 
 	$: console.log (name)
 
-	// using a dynamic Label statement in with if statement
+	// using a dynamic Label statement with if statement
 	$: if (name === "John Doe") {
 		console.log ("It changes the age")
 		age = 25
@@ -18,9 +18,15 @@
 		age = age + 1
 	}
 
-	// reset to default name variabel
+	// Reset to default name variable
 	function  changeName () {
 		name = "John Doe"
+	}
+
+	// Bind input element
+	function nameInput (event) {
+		const enteredValue = event.target.value
+		name = enteredValue
 	}
 
 </script>
@@ -34,7 +40,6 @@
 	}
 
 	h1 {
-		/*color: #ff3e00; */
 		color: purple;
 		font-size: 4em;
 		font-weight: 1rem;
@@ -51,7 +56,8 @@
 <main>
 	<h1>Hello {uppercaseName}, your age is {age}!</h1>
 	<button on:click="{incrementAge}">Change Age</button>
-	<button on:click="{changeName}">Change Name</button>
+	<!-- <button on:click="{changeName}">Change Name</button> -->
+	<input type="text" value="{name}" on:input="{nameInput}" />
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
