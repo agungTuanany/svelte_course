@@ -12,15 +12,12 @@ import CourseGoal from "./CourseGoal.svelte"
 
 //#################################################################
 // Instant variable
-let name = "John"
-let age = 30
-let title = "Job Title"
-let image = "image"
-let description = "job descrpition"
+let name = ""
+let title = ""
+let image = ""
+let description = ""
 let formState = "empty"
-let done = false
 
-let courseGoal = "your course goal"
 
 //#################################################################
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
@@ -37,7 +34,17 @@ $: if (name === "John Doe") {
 
 //#################################################################
 function addContact () {
-	done = true
+	if (
+		name.trim ().length == 0 ||
+		title.trim ().length == 0 ||
+		image.trim ().length == 0 ||
+		description.trim ().length == 0
+	) {
+		formState = "invalid"
+		return;
+	}
+
+	formState = "done"
 }
 
 
@@ -130,13 +137,17 @@ function courseGoalInput (event) {
 
 	<button on:click={addContact}>Add Contact Card</button>
 
-	{#if done}
+	{#if formState === "done"}
 	<ContactCard
 		userName="{name}"
 		jobTitle="{title}"
 		userImage="{image}"
 		{description}
 	/>
+	{:else if formState === "invalid"}
+		<p>Invalid input</p>
+	{:else}
+		<p>Enter some data and hit the button</p>
 	{/if}
 
   <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
