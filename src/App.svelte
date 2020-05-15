@@ -5,9 +5,10 @@
 -->
 <script>
 //#################################################################
-	// Dependencies
+// Dependencies
 
-	import ContactCard from "./ContactCard.svelte"
+import ContactCard from "./ContactCard.svelte"
+import CourseGoal from "./CourseGoal.svelte"
 
 //#################################################################
 // Instant variable
@@ -16,6 +17,8 @@ let age = 30
 let title = "Job Title"
 let image = "image"
 let description = "job descrpition"
+
+let courseGoal = "your course goal"
 
 //#################################################################
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
@@ -62,6 +65,11 @@ function jobDescInput (event) {
 	description = enteredValue
 }
 
+function courseGoalInput (event) {
+	const enteredValue = event.target.value
+	courseGoal = enteredValue
+}
+
 </script>
 
 <style>
@@ -104,12 +112,16 @@ function jobDescInput (event) {
 	<input type="txt" value="{image}" on:input="{imageInput}"/>
 	<textarea rows="3" value="{description}" on:input="{jobDescInput}"/>
 
+
+	<input type="text" value="{courseGoal}" on:input="{courseGoalInput}">
 	<ContactCard
 		userName="{name}"
 		jobTitle="{title}"
 		userImage="{image}"
 		{description}
 	/>
+
+	<CourseGoal goal={courseGoal} />
 
   <br>
   <br>
