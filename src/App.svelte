@@ -18,6 +18,7 @@ let image = ""
 let description = ""
 let formState = "empty"
 
+let createdContacts = []
 
 //#################################################################
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
@@ -43,6 +44,14 @@ function addContact () {
 		formState = "invalid"
 		return;
 	}
+	createdContacts =  [
+		...createdContacts,
+		{
+		name		: name,
+		jobTitle	: title,
+		imageUrl	: image,
+		desc		: description
+	}]
 
 	formState = "done"
 }
@@ -87,32 +96,10 @@ function courseGoalInput (event) {
 </script>
 
 <style>
-
-/*
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+	#form {
+		width: 30rem;
+		max-width: 100%;
 	}
-
-	h1 {
-		color: purple;
-		font-size: 4em;
-		font-weight: 1rem;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-	*/
-#form {
-	width: 30rem;
-	max-width: 100%;
-}
 </style>
 
 <main>
@@ -137,19 +124,20 @@ function courseGoalInput (event) {
 
 	<button on:click={addContact}>Add Contact Card</button>
 
-	{#if formState === "done"}
-	<ContactCard
-		userName="{name}"
-		jobTitle="{title}"
-		userImage="{image}"
-		{description}
-	/>
-	{:else if formState === "invalid"}
+	{#if formState === "invalid"}
 		<p>Invalid input</p>
 	{:else}
 		<p>Enter some data and hit the button</p>
 	{/if}
 
+	{#each createdContacts as contact}
+	<ContactCard
+		userName="{contact.name}"
+		jobTitle="{contact.title}"
+		userImage="{contact.image}"
+		description="{contact.desc}"
+	/>
+	{/each}
   <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
