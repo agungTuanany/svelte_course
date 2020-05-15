@@ -17,6 +17,8 @@ let age = 30
 let title = "Job Title"
 let image = "image"
 let description = "job descrpition"
+let formState = "empty"
+let done = false
 
 let courseGoal = "your course goal"
 
@@ -34,6 +36,11 @@ $: if (name === "John Doe") {
 }
 
 //#################################################################
+function addContact () {
+	done = true
+}
+
+
 function incrementAge () {
 	age = age + 1
 }
@@ -74,6 +81,7 @@ function courseGoalInput (event) {
 
 <style>
 
+/*
 	main {
 		text-align: center;
 		padding: 1em;
@@ -88,43 +96,49 @@ function courseGoalInput (event) {
 		font-weight: 100;
 	}
 
-	textarea,
-	input {
-		display: flex;
-	}
-
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
 		}
 	}
+	*/
+#form {
+	width: 30rem;
+	max-width: 100%;
+}
 </style>
 
 <main>
-	<h1>Hello {uppercaseName}, your age is {age}!</h1>
-	<button on:click="{incrementAge}">Change Age</button>
-	<!-- <button on:click="{changeName}">Change Name</button> -->
-	<!-- <input type="text" value="{name}" on:input="{nameInput}" /> -->
+	<div id="form">
+		<div class="form-control">
+			<label for="userName">User Name</label>
+			<input type="text" value="{name}" on:input={nameInput} id="userName" />
+		</div>
+		<div class="form-control">
+			<label for="jobTitle">Job Title</label>
+			<input type="text" value="{title}" on:input={jobInput} id="jobTitle" />
+		</div>
+		<div class="form-control">
+			<label for="image">Image URL</label>
+			<input type="text" value="{image}" on:input={imageInput} id="image" />
+		</div>
+		<div class="form-control">
+			<label for="desc">Description</label>
+			<input type="text" value="{description}" on:input={jobDescInput} />
+		</div>
+	</div>
 
-	<!-- XXX This way is NOT RECOMMENDED, cause breaking unidirectional data overflow. In most cases data flow should be clear -->
-	<input type="text" bind:value="{name}" />
-	<input type="text" value="{title}" on:input="{jobInput}"/>
-	<input type="txt" value="{image}" on:input="{imageInput}"/>
-	<textarea rows="3" value="{description}" on:input="{jobDescInput}"/>
+	<button on:click={addContact}>Add Contact Card</button>
 
-
-	<input type="text" value="{courseGoal}" on:input="{courseGoalInput}">
+	{#if done}
 	<ContactCard
 		userName="{name}"
 		jobTitle="{title}"
 		userImage="{image}"
 		{description}
 	/>
+	{/if}
 
-	<CourseGoal goal={courseGoal} />
-
-  <br>
-  <br>
   <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 

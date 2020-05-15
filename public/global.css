@@ -45,12 +45,16 @@ input, button, select, textarea {
 	border-radius: 2px;
 }
 
-input:disabled {
-	color: #ccc;
-}
-
-input[type="range"] {
-	height: 0;
+textarea,
+input {
+	display: block;
+	width: 100%;
+	font: inherit;
+	border-bottom: 2px solid #ccc;
+	border-radius: 3px 3px 0 0;
+	background: white;
+	padding: 0.15rem 0.25rem;
+	transition: border-color 0.1s ease-out;
 }
 
 button {
@@ -76,4 +80,13 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+label {
+	display: block;
+	outline: none;
+}
+
+.form-control {
+	padding: 0.5rem;
 }

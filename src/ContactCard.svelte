@@ -40,14 +40,15 @@ export let description
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		padding-left: 1rem;
 	}
 
 	h1 {
 		font-size: 1rem;
 		font-weight: normal;
 		color: #5a5a5a;
-		margin: 0;
-		margin-bottom: 0.5rem;
+		margin: 0.5rem 0;
+		font-family: "Roboto Slab", sans-serif;
 	}
 
 	h2 {
@@ -56,6 +57,7 @@ export let description
 		color: #5a5a5a;
 		margin: 0;
 		margin-bottom: 0.5rem;
+		font-family: "Lato", sans-serif;
 	}
 
 	.description {
