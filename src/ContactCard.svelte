@@ -74,7 +74,7 @@ export let jobDescription
 	</header>
 	<div class="description">
 		<p>A short description</p>
-		<p>{jobDescription}</p>
+		<p>{@html jobDescription}</p>
 	</div>
 </div>
 
