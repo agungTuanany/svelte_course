@@ -2,7 +2,7 @@
 export let userName
 export let jobTitle
 export let userImage
-export let jobDescription
+export let description
 </script>
 
 <style>
@@ -74,7 +74,7 @@ export let jobDescription
 	</header>
 	<div class="description">
 		<p>A short description</p>
-		<p>{@html jobDescription}</p>
+		<p>{@html description}</p>
 	</div>
 </div>
 

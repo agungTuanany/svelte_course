@@ -15,7 +15,7 @@ let name = "John"
 let age = 30
 let title = "Job Title"
 let image = "image"
-let jobDesc = "job descrpition"
+let description = "job descrpition"
 
 //#################################################################
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
@@ -59,7 +59,7 @@ function imageInput (event) {
 
 function jobDescInput (event) {
 	const enteredValue = event.target.value
-	jobDesc = enteredValue
+	description = enteredValue
 }
 
 </script>
@@ -102,13 +102,13 @@ function jobDescInput (event) {
 	<input type="text" bind:value="{name}" />
 	<input type="text" value="{title}" on:input="{jobInput}"/>
 	<input type="txt" value="{image}" on:input="{imageInput}"/>
-	<textarea rows="3" value="{jobDesc}" on:input="{jobDescInput}"/>
+	<textarea rows="3" value="{description}" on:input="{jobDescInput}"/>
 
 	<ContactCard
 		userName="{name}"
 		jobTitle="{title}"
 		userImage="{image}"
-		jobDescription="{jobDesc}"
+		{description}
 	/>
 
   <br>
