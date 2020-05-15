@@ -130,13 +130,16 @@ function courseGoalInput (event) {
 		<p>Enter some data and hit the button</p>
 	{/if}
 
-	{#each createdContacts as contact}
+	{#each createdContacts as contact, index}
+		<h2># {index + 1}</h2>
 	<ContactCard
 		userName="{contact.name}"
 		jobTitle="{contact.title}"
 		userImage="{contact.image}"
 		description="{contact.desc}"
-	/>
+  />
+	{:else}
+		<p>Please start adding some contacts, we found none!</p>
 	{/each}
   <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
