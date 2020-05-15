@@ -25,6 +25,10 @@ export let description
 		height: 100%;
 	}
 
+	.thumb-placeholder {
+		background: #ccc;
+	}
+
 	img {
 		width: 100%;
 		height: 100%;
@@ -64,7 +68,7 @@ export let description
 <!-- markup -->
 <div class="contact-card">
 	<header>
-		<div class="thumb">
+		<div class="{userImage === true ? "thumb" : "thumb thumb-placeholder"}">
 			<img src="{userImage}" alt="">
 		</div>
 		<div class="user-data">
