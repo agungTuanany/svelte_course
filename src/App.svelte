@@ -2,6 +2,13 @@
     Side note:
     Svelte apps are built from multiple "Components" -UI building blocks -UI building blocks.
     It's the same philosophy as in React, Angular & Vue
+
+    One important concepts on Svelte Reactivity in "updating array" is to assigning a new array, not by using
+    push(), pop() method instead always store a new value in variable which used in markup. This is a "Common"
+    rule in Svelte.
+
+    Event Modifier:
+    https://svelte.dev/tutorial/event-modifiers
 -->
 <script>
     //#################################################################
@@ -34,7 +41,8 @@
     }
 
     //#################################################################
-    function addContact () {
+    function addContact (event) {
+        // event.preventDefault ()
         if (
             name.trim ().length == 0 ||
             title.trim ().length == 0 ||
@@ -44,14 +52,15 @@
             formState = "invalid"
             return;
         }
+        // Svelte "reactivity" 
         createdContacts =  [
             ...createdContacts,
             {
-                id			: Math.random (),
-                name		: name,
-                jobTitle	: title,
-                imageUrl	: image,
-                desc		: description
+                id          : Math.random (),
+                name        : name,
+                jobTitl     : title,
+                imageUr     : image,
+                desc        : description
             }]
 
         console.log ( {...createdContacts} )
@@ -133,7 +142,8 @@
         </div>
     </div>
 
-    <button on:click={addContact}>Add Contact Card</button>
+    <!-- Add event modifier -->
+    <button on:click|preventDefault={addContact}>Add Contact Card</button>
     <button on:click={deleteFirst}>Delete First</button>
     <button on:click={deleteLast}>Delete Last</button>
 
