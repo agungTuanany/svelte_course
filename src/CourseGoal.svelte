@@ -1,13 +1,13 @@
 <script>
-export let goal
+    export let goal
 
-$: doHighlight = goal.includes ("!")
+    $: doHighlight = goal.includes ("!")
 </script>
 
 <style>
-.highlight {
-	color: red;
-}
+    .highlight {
+        color: red;
+    }
 
 </style>
 

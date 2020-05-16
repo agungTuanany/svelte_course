@@ -1,92 +1,92 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Roboto+Slab');
 
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	font-family: 'Roboto+Slab', sans-serif;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto+Slab', sans-serif;
 }
 
 body {
-	color: #333;
-	margin: 0;
-	padding: 2rem;
-	background: #f3f3f3;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+    background: #f3f3f3;
 }
 
 a {
-	color: rgb(0,100,200);
-	text-decoration: none;
+    color: rgb(0,100,200);
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 a:visited {
-	color: rgb(0,80,160);
+    color: rgb(0,80,160);
 }
 
 label {
-	display: block;
+    display: block;
 }
 
 input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.4em;
+    margin: 0 0 0.5em 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
 }
 
 textarea,
 input {
-	display: block;
-	width: 100%;
-	font: inherit;
-	border-bottom: 2px solid #ccc;
-	border-radius: 3px 3px 0 0;
-	background: white;
-	padding: 0.15rem 0.25rem;
-	transition: border-color 0.1s ease-out;
+    display: block;
+    width: 100%;
+    font: inherit;
+    border-bottom: 2px solid #ccc;
+    border-radius: 3px 3px 0 0;
+    background: white;
+    padding: 0.15rem 0.25rem;
+    transition: border-color 0.1s ease-out;
 }
 
 button {
-	color: white;
-	background: #cf0056;
-	outline: none;
-	padding: 0.5rem 1rem;
-	border-radius: 5px;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
-	cursor: pointer;
+    color: white;
+    background: #cf0056;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
 }
 
 button:disabled {
-	color: #999;
+    color: #999;
 }
 
 button:hover,
 button:not(:disabled):active {
-	background-color: #e40763;
-	border-color: #e40763;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
+    background-color: #e40763;
+    border-color: #e40763;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
 
 button:focus {
-	border-color: #666;
+    border-color: #666;
 }
 
 label {
-	display: block;
-	outline: none;
+    display: block;
+    outline: none;
 }
 
 .form-control {
-	padding: 0.5rem;
+    padding: 0.5rem;
 }
