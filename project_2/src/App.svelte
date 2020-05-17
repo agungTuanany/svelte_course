@@ -1,6 +1,7 @@
 <script>
     import Header       from "./UI/Header.svelte"
     import MeetupGrid   from "./Meetups/MeetupGrid.svelte"
+    import TextInput    from "./UI/TextInput.svelte"
 
     // ####################################################
     let title       = ""
@@ -52,8 +53,8 @@
         /*
          * Using meetups.push() it doesn't work in svelteJS, the problem are, push() method is not a trigger that signal
          * to use svelte that needs to checks the DOM potentially update the DOM.
-        */
-         // meetups.push (newMeetup) // DOES NOT WORK !!
+         */
+        // meetups.push (newMeetup) // DOES NOT WORK !!
         meetups = [newMeetup, ...meetups]
 
     }
@@ -63,40 +64,61 @@
     main {
         margin-top: 5rem;
     }
+
+    form {
+        width: 30rem;
+        max-width: 90%;
+        margin: auto;
+    }
 </style>
 
-    <Header/>
+<Header/>
 <main>
     <form on:submit|preventDefault="{addMeetup}" action="" method="post">
-        <div class="form-control">
-            <label for="title">Title</label>
-            <input type="text" name="" id="title" bind:value="{title}">
-        </div>
-        <div class="form-control">
-            <label for="subtitle">Subtitle</label>
-            <input type="text" name="" id="subtitle" bind:value="{subtitle}">
-        </div>
-        <div class="form-control">
-            <label for="time">Time</label>
-            <input type="text" name="" id="time" bind:value="{time}">
-        </div>
-        <div class="form-control">
-            <label for="imageUrl">Image URL</label>
-            <input type="text" name="" id="imageUrl" bind:value="{imageUrl}">
-        </div>
-        <div class="form-control">
-            <label for="address">Address</label>
-            <input type="text" name="" id="address" bind:value="{address}">
-        </div>
-        <div class="form-control">
-            <label for="email">Contact Email</label>
-            <input type="text" name="" id="email" bind:value="{email}">
-        </div>
-        <div class="form-control">
-            <label for="description">Description</label>
-            <textarea name="" id="description" rows="8" cols="40" bind:value="{description}"></textarea>
-        </div>
-        <button type="submit">Save</button>
+        <TextInput
+            id="title"
+            label="title"
+            type="text"
+            value="{title}"
+            on:input={event => {title = event.target.value}} />
+        <TextInput
+            id="subtitle"
+            label="subtitle"
+            type="text"
+            value="{subtitle}"
+            on:input={event => {subtitle = event.target.value}} />
+        <TextInput
+            id="time"
+            label="time"
+            type="text"
+            value="{time}"
+            on:input={event => {time = event.target.value}} />
+        <TextInput
+            id="imageUrl"
+            label="imageUrl"
+            type="text"
+            value="{imageUrl}"
+            on:input={event => {imageUrl = event.target.value}} />
+        <TextInput
+            id="address"
+            label="address"
+            type="text"
+            value="{address}"
+            on:input={event => {address = event.target.value}} />
+        <TextInput
+            id="email"
+            label="E-mail"
+            type="text"
+            value="{email}"
+            on:input={event => {email = event.target.value}} />
+        <TextInput
+            id="description"
+            label="description"
+            type="text"
+            value="{description}"
+            controlType="textarea"
+            on:input={event => {description = event.target.value}} />
+            <button type="submit">Save</button>
     </form>
     <!-- <MeetupGrid meetup="{meetup}" /> -->
     <MeetupGrid {meetups}/>
