@@ -1,3 +1,12 @@
+<script>
+    export let title
+    export let subtitle
+    export let time
+    export let imageUrl
+    export let description
+    export let address
+    export let email
+</script>
 <style>
     article {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -17,6 +26,12 @@
         height: 14rem;
     }
 
+    .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     h1 {
         font-size: 1.25rem;
         margin: 0.5rem 0;
@@ -25,12 +40,19 @@
 
     h1.is-favorite {
         background: #10A129;
-        padding: white;
+        color: white;
+        padding: 0 0.5rem;
         border-radius: 5px;
     }
 
     h2 {
         font-size: 1rem;
+        color: #808080;
+        margin: 0.5rem 0;
+    }
+
+    h3 {
+        font-size: 0.85rem;
         color: #808080;
         margin: 0.5rem 0;
     }
@@ -46,17 +68,19 @@
 
 <article>
     <header>
-        <h1>Title</h1>
-        <h2>Subtitle</h2>
-        <p>Address</p>
+        <h1>{title}</h1>
+        <h2>{subtitle}</h2>
+        <h3>{time}</h3>
+        <p>{address}</p>
     </header>
     <div class="image">
-        <img src="" alt="">
+        <img src="{imageUrl}" alt="{title}">
     </div>
     <div class="content">
-        <p>Decription</p>
+        <p>{description}</p>
     </div>
     <footer>
+        <a href="mailto:{email}">Contact</a>
         <button type="">Show Details</button>
         <button type="">Favorite</button>
     </footer>

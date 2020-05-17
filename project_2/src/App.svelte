@@ -5,20 +5,22 @@
     const meetups = [
         {
             id              : "meetup1",
-            title           : "Learn to code",
+            title           : "Frontend Development with SvelteJS",
+            subtitle        : "Create a todo with svelte",
             description     : "In this meetup, we will have some exprets talks about front-end development",
-            imageUrl        : "",
+            imageUrl        :  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
             time            : "16:00 GMT",
-            address         : "27th Munchies Roead, 22441 New Mark",
+            address         : "27th Munchies Road, 22441 New Mark",
             contactEmail    : "code@test.com"
         },
         {
             id              : "meetup2",
-            title           : "Learn to code",
+            title           : "Backend with hapiJS",
+            subtitle        : "Why hapiJS not express?",
             description     : "In this meetup, we talk about back-end development",
-            imageUrl        : "",
+            imageUrl        : "https://blog.newrelic.com/wp-content/uploads/hapijs.jpg",
             time            : "16:00 GMT",
-            address         : "27th Munchies Roead, 22441 New Mark",
+            address         : "27th Munchies Road, 22441 New Mark",
             contactEmail    : "codeExpress@test.com"
         },
     ]
@@ -32,11 +34,20 @@
 </style>
 
 <main>
-    <Header />
+    <Header
+        />
 
     <section id="meetups">
         {#each meetups as meetup}
-            <MeetupItem />
+            <MeetupItem
+                title="{meetup.title}"
+                subtitle="{meetup.subtitle}"
+                time="{meetup.time}"
+                address="{meetup.address}"
+                imageUrl="{meetup.imageUrl}"
+                description="{meetup.description}"
+                email="{meetup.contactEmail}"
+                />
         {/each}
     </section>
 
