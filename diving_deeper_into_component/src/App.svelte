@@ -1,6 +1,19 @@
 <script>
     import Product from "./Product.svelte"
 
+    const products = [
+        {
+            id      : "p1",
+            title   : "You dont know Svelte",
+            price   : "9.25"
+        },
+        {
+            id      : "p2",
+            title   : "svelte component",
+            price   : "9.10"
+        }
+    ]
+
     function addToCart (event) {
         console.log (event.detail)
     }
@@ -30,12 +43,22 @@
 	}
 </style>
 
-<main>
+<!-- using default props:
     <Product
-        productTitle="A book"
-        on:add-to-cart="{addToCart}"
-        on:delete="{deleteProduct}"
-        />
+    title="{product.title}"
+    price="{product.price}"
+    ....
+    ....
+    />
+-->
+<main>
+    {#each products as product}
+        <Product
+            {...product}
+            on:add-to-cart="{addToCart}"
+            on:delete="{deleteProduct}"
+            />
+    {/each}
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
