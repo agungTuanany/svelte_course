@@ -1,5 +1,13 @@
 <script>
+    import { createEventDispatcher } from "svelte"
+
+    // ###############################################
+    const dispatch = createEventDispatcher ()
+    const dispacthClose = () => dispatch ("close")
+    const dispatchCancel = () => dispatch ("cancel")
+
 </script>
+
 <style>
     .backdrop {
         position: fixed;
@@ -29,7 +37,8 @@
         border-bottom: 1px solid #ccc;
     }
 </style>
-<div class="backdrop"></div>
+
+<div class="backdrop" on:click="{dispacthClose}"></div>
 <div class="modal">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Slot -->
     <header>
@@ -41,7 +50,7 @@
     </div>
     <footer>
         <slot name="footer">
-            <button>Close</button>
+        <button on:click="{dispatchCancel}">Close</button>
         </slot>
     </footer>
 

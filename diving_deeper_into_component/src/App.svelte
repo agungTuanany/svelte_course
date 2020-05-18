@@ -15,11 +15,17 @@
         }
     ]
 
+    let showModal = false
+
+    // ###############################################
     function addToCart (event) {
         console.log (event.detail)
     }
 
     const deleteProduct = e => console.log (e.detail)
+
+    const modalEventTrue = () => showModal = true
+    const modalEventFalse = () => showModal = false
 </script>
 
 <style>
@@ -61,11 +67,15 @@
             />
     {/each}
 
-    <Modal>
-        <h1 slot="header">Hello!</h1>
-        <p>Using HTML slot component</p>
-        <button slot="footer">Confirm</button>
-    </Modal>
+    <button on:click="{modalEventTrue}" type="">Show Modal</button>
+
+    {#if showModal}
+        <Modal on:cancel="{modalEventFalse}" on:close="{modalEventFalse}">
+            <h1 slot="header">Hello!</h1>
+            <p>Using HTML slot component</p>
+            <button slot="footer" on:click="{modalEventFalse}">Confirm</button>
+        </Modal>
+    {/if}
 
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
