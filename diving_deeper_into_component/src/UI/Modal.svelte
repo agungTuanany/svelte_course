@@ -17,7 +17,7 @@
         top: 10vh;
         left: 10%;
         width: 80%;
-        max-height: 15vh;
+        max-height: 30vh;
         background: white;
         border-radius: 5px;
         z-index: 100;
@@ -31,5 +31,18 @@
 </style>
 <div class="backdrop"></div>
 <div class="modal">
-    <slot />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Slot -->
+    <header>
+        <slot name="header" />
+    </header>
+
+    <div class="content">
+        <slot />
+    </div>
+    <footer>
+        <slot name="footer">
+            <button>Close</button>
+        </slot>
+    </footer>
+
 </div>

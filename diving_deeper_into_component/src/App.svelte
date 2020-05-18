@@ -62,9 +62,11 @@
     {/each}
 
     <Modal>
-        <h1>Hello!</h1>
+        <h1 slot="header">Hello!</h1>
         <p>Using HTML slot component</p>
+        <button slot="footer">Confirm</button>
     </Modal>
+
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
