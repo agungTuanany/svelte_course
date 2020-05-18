@@ -1,5 +1,11 @@
 <script>
     import Product from "./Product.svelte"
+
+    function addToCart (event) {
+        console.log (event.detail)
+    }
+
+    const deleteProduct = e => console.log (e.detail)
 </script>
 
 <style>
@@ -27,8 +33,8 @@
 <main>
     <Product
         productTitle="A book"
-        on:add-to-cart="{() => console.log ("clicked")}"
-        on:delete="{() => console.log ("delete clicked")}"
+        on:add-to-cart="{addToCart}"
+        on:delete="{deleteProduct}"
         />
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
