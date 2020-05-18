@@ -24,12 +24,12 @@
 	}
 </style>
 
-
-
-
-
 <main>
-    <Product productTitle="A book" on:click="{() => console.log ("clicked")}" />
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+    <Product
+        productTitle="A book"
+        on:add-to-cart="{() => console.log ("clicked")}"
+        on:delete="{() => console.log ("delete clicked")}"
+        />
+    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
