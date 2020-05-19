@@ -1,9 +1,10 @@
 <script>
-    export let controlType = undefined
+    export let controlType = null
     export let id
     export let label
     export let value
-    export let type
+    export let type = "text"
+    export let rows = null
 
 </script>
 <style>

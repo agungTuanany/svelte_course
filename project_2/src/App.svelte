@@ -79,43 +79,37 @@
         <TextInput
             id="title"
             label="title"
-            type="text"
             value="{title}"
             on:input={event => {title = event.target.value}} />
         <TextInput
             id="subtitle"
             label="subtitle"
-            type="text"
             value="{subtitle}"
             on:input={event => {subtitle = event.target.value}} />
         <TextInput
             id="time"
             label="time"
-            type="text"
             value="{time}"
             on:input={event => {time = event.target.value}} />
         <TextInput
             id="imageUrl"
             label="imageUrl"
-            type="text"
             value="{imageUrl}"
             on:input={event => {imageUrl = event.target.value}} />
         <TextInput
             id="address"
             label="address"
-            type="text"
             value="{address}"
             on:input={event => {address = event.target.value}} />
         <TextInput
             id="email"
             label="E-mail"
-            type="text"
+            type="email"
             value="{email}"
             on:input={event => {email = event.target.value}} />
         <TextInput
             id="description"
             label="description"
-            type="text"
             value="{description}"
             controlType="textarea"
             on:input={event => {description = event.target.value}} />
