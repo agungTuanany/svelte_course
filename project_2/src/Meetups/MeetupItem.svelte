@@ -101,13 +101,14 @@
         <p>{description}</p>
     </div>
     <footer>
-        <Button href="mailto:{email}" caption="Contact" />
-        <Button type="button" caption="Show Details" />
+        <Button href="mailto:{email}" >Contact</Button>
+            <Button type="button">Show Details</Button>
         <Button
             mode="outline"
             color="{isFav ? null : "success"}"
             type="button"
-            caption="{isFav ? 'Unfavorite' : 'Favorite'}"
-            on:click="{dispatchFavorite}"/>
+            on:click="{dispatchFavorite}">
+            {isFav ? 'Unfavorite' : 'Favorite'}
+        </Button>
     </footer>
 </article>
