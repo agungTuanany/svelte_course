@@ -5,6 +5,7 @@
     export let value
     export let type = "text"
     export let rows = null
+    export let cols = null
 
 </script>
 <style>
@@ -42,7 +43,7 @@
 <div class="form-control">
     <label for="{id}">{label}</label>
     {#if controlType === "textarea"}
-        <textarea name="" id="{id}" rows="6" cols="30" {value} on:input></textarea>
+        <textarea name="" id="{id}" {rows} {cols} {value} on:input></textarea>
     {:else}
         <input type="{type}" {id} {value} on:input>
     {/if}

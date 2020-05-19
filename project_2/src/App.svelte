@@ -23,7 +23,8 @@
             description     : "In this meetup, we will have some exprets talks about front-end development",
             imageUrl        :  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
             address         : "27th Munchies Road, 22441 New Mark",
-            contactEmail    : "code@test.com"
+            contactEmail    : "code@test.com",
+            isFavorite      : false
         },
         {
             id              : "meetup2",
@@ -33,7 +34,8 @@
             description     : "In this meetup, we talk about back-end development",
             imageUrl        : "https://blog.newrelic.com/wp-content/uploads/hapijs.jpg",
             address         : "27th Munchies Road, 22441 New Mark",
-            contactEmail    : "codeExpress@test.com"
+            contactEmail    : "codeExpress@test.com",
+            isFavorite      : false
         },
     ]
 
@@ -59,6 +61,17 @@
         meetups = [newMeetup, ...meetups]
 
     }
+
+	function toggleFavorite (event) {
+		const id = event.detail
+		const updatedMeetup = { ...meetups.find(m => m.id === id) }
+		updatedMeetup.isFavorite = !updatedMeetup.isFavorite
+		const meetupIndex = meetups.findIndex(m => m.id === id)
+		const updatedMeetups = [...meetups]
+		updatedMeetups[meetupIndex] = updatedMeetup
+        meetups = updatedMeetups
+	}
+
 </script>
 
 <style>
@@ -111,12 +124,14 @@
             id="description"
             label="description"
             value="{description}"
+            rows=4
+            cols=8
             controlType="textarea"
             on:input={event => {description = event.target.value}} />
-            <Button type="submit" caption="Save" />
+        <Button type="submit" caption="Save" />
     </form>
     <!-- <MeetupGrid meetup="{meetup}" /> -->
-    <MeetupGrid {meetups}/>
+    <MeetupGrid {meetups} on:toggle-fav="{toggleFavorite}"/>
 
 </main>
 
