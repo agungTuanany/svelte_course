@@ -1,5 +1,4 @@
-<script>
-    import { createEventDispatcher } from "svelte"
+<script> import { createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte"
 
     // ###############################################
     const dispatch = createEventDispatcher ()
@@ -8,11 +7,24 @@
 
     // ###############################################
     let agreed = false
+    let autoscroll = false
 
     //const slotBtnDisclaimer = () =>  agreed = true
     function slotBtnDisclaimer () {
         return agreed = true
     }
+
+    onMount (() =>  console.log ("onMount"))
+
+    onDestroy (() => console.log ("onDestroy"))
+
+    beforeUpdate (() => {
+        console.log ("beforeUpdate")
+        autoscroll = agreed
+    })
+    afterUpdate (() => console.log ("afterUpdate"))
+
+    console.log ("Script executed")
 
 </script>
 
