@@ -37,16 +37,16 @@
 
     // ####################################################
 
-    function addMeetup () {
+    function addMeetup (event) {
         const newMeetup = {
             id              : Math.random ().toString (),
-            title           : title,
-            subtitle        : subtitle,
-            time            : time,
-            imageUrl        : imageUrl,
-            address         : address,
-            contactEmail    : email,
-            description     : description
+            title           : event.detail.title,
+            subtitle        : event.detail.subtitle,
+            time            : event.detail.time,
+            imageUrl        : event.detail.imageUrl,
+            address         : event.detail.address,
+            contactEmail    : event.detail.email,
+            description     : event.detail.description
         }
 
         /*
@@ -55,6 +55,7 @@
          */
         // meetups.push (newMeetup) // DOES NOT WORK !!
         meetups = [newMeetup, ...meetups]
+        editMode = null
 
     }
 
@@ -75,13 +76,19 @@
         margin-top: 5rem;
     }
 
+    .meetup-control {
+        margin: 1rem;
+    }
+
 </style>
 
 <Header/>
 <main>
-    <Button caption="New Meetup" on:click={() => editMode = "add"} />
+    <div class="meetup-controls">
+        <Button caption="New Meetup" on:click={() => editMode = "add"} />
+    </div>
     {#if editMode === "add"}
-        <EditMeetup />
+        <EditMeetup on:save="{addMeetup}"/>
     {/if}
     <MeetupGrid {meetups} on:toggle-fav="{toggleFavorite}"/>
 
