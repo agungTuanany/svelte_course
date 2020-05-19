@@ -22,7 +22,13 @@
         console.log ("beforeUpdate")
         autoscroll = agreed
     })
-    afterUpdate (() => console.log ("afterUpdate"))
+    afterUpdate (() => {
+        console.log ("afterUpdate")
+        if (autoscroll) {
+            const modal = document.querySelector (".modal")
+            modal.scrollTo (0, modal.scrollHeight)
+        }
+    })
 
     console.log ("Script executed")
 
