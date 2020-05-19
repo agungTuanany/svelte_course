@@ -3,8 +3,16 @@
 
     // ###############################################
     const dispatch = createEventDispatcher ()
-    const dispacthClose = () => dispatch ("close")
+    const dispatchClose = () => dispatch ("close")
     const dispatchCancel = () => dispatch ("cancel")
+
+    // ###############################################
+    let agreed = false
+
+    //const slotBtnDisclaimer = () =>  agreed = true
+    function slotBtnDisclaimer () {
+        return agreed = true
+    }
 
 </script>
 
@@ -38,19 +46,22 @@
     }
 </style>
 
-<div class="backdrop" on:click="{dispacthClose}"></div>
+<div class="backdrop" on:click="{dispatchClose}"></div>
 <div class="modal">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Slot -->
     <header>
         <slot name="header" />
     </header>
-
     <div class="content">
         <slot />
     </div>
+    <div class="disclaimer">
+        <p>Before you close, you need to agree to our terms.</p>
+        <button type="" on:click="{slotBtnDisclaimer}">Agree</button>
+    </div>
     <footer>
-        <slot name="footer">
-        <button on:click="{dispatchCancel}">Close</button>
+        <slot name="footer" didAgree="{agreed}">
+        <button on:click="{dispatchCancel}" disabled={!agreed}>Close</button>
         </slot>
     </footer>
 
