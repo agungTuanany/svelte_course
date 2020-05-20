@@ -1,5 +1,8 @@
 <script>
+    // Dependencies
     import { createEventDispatcher } from "svelte"
+
+    // Buildin dependencies
     import Button       from "./../UI/Button.svelte"
     import Badge       from "./../UI/Badge.svelte"
 
@@ -95,14 +98,14 @@
         <p>{address}</p>
     </header>
     <div class="image">
-        <img src="{imageUrl}" alt="{title}">
+        <img src="{imageUrl}" alt="{title}" />
     </div>
     <div class="content">
         <p>{description}</p>
     </div>
     <footer>
         <Button href="mailto:{email}" >Contact</Button>
-            <Button type="button">Show Details</Button>
+        <Button type="button">Show Details</Button>
         <Button
             mode="outline"
             color="{isFav ? null : "success"}"

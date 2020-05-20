@@ -1,6 +1,8 @@
 <script>
+    // Dependencies
     import { createEventDispatcher } from "svelte"
 
+    // Buildin dependencies
     import TextInput    from "./../UI/TextInput.svelte"
     import Button       from "./../UI/Button.svelte"
     import Modal        from "./../UI/Modal.svelte"
@@ -15,6 +17,9 @@
     let email       = ""
     let description = ""
 
+    const dispatch = createEventDispatcher ()
+    // ############################################
+    // Instant functions
     const submitForm = () => {
         dispatch ("save", {
             title           : title,
@@ -27,7 +32,10 @@
         })
     }
 
-    const dispatch = createEventDispatcher ()
+    function cancel () {
+        dispatch ("cancel")
+    }
+
 
 </script>
 
@@ -90,8 +98,9 @@
             controlType="textarea"
             on:input={event => {description = event.target.value}}
         />
-        <!--
-        <Button type="submit">Save</Button>
-        -->
     </form>
+    <div slot="footer">
+        <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>
+        <Button type="button" on:click={submitForm}>Save</Button>
+    </div>
 </Modal>

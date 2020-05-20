@@ -1,6 +1,8 @@
 <script>
+    // Buildin dependencies
     import MeetupItem from "./MeetupItem.svelte"
 
+    // props
     export let meetups;
 </script>
 

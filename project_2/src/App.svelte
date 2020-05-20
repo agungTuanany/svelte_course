@@ -6,8 +6,6 @@
     import EditMeetup   from "./Meetups/EditMeetup.svelte"
 
     // ####################################################
-
-
     let meetups = [
         {
             id              : "meetup1",
@@ -59,19 +57,18 @@
 
     }
 
-	function toggleFavorite (event) {
-		const id = event.detail
-		const updatedMeetup = { ...meetups.find(m => m.id === id) }
-		updatedMeetup.isFavorite = !updatedMeetup.isFavorite
-		const meetupIndex = meetups.findIndex(m => m.id === id)
-		const updatedMeetups = [...meetups]
-		updatedMeetups[meetupIndex] = updatedMeetup
+    function toggleFavorite (event) {
+        const id = event.detail
+        const updatedMeetup = { ...meetups.find(m => m.id === id) }
+        updatedMeetup.isFavorite = !updatedMeetup.isFavorite
+        const meetupIndex = meetups.findIndex(m => m.id === id)
+        const updatedMeetups = [...meetups]
+        updatedMeetups[meetupIndex] = updatedMeetup
         meetups = updatedMeetups
-	}
+    }
 
     function cancelEdit () {
         editMode = null
-        console.log ("klick")
     }
 
 </script>

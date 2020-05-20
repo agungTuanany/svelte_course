@@ -1,4 +1,6 @@
 <script>
+    // ####################################################
+    // Props
     export let type     = "button"
     export let href     = null
     export let mode     = null
