@@ -7,11 +7,13 @@
     // Props
     let val = ""
     let selectedOption = 1
+    let price = 0
 
     // ###########################################
     // Reactive expression
-    $: console.log (val)
-    $: console.log (selectedOption)
+    $: console.log ("val", val)
+    $: console.log ("selectedOptions", selectedOption)
+    $: console.log ("price", price)
 
     // ###########################################
     // Instant functions
@@ -61,6 +63,11 @@
         It worth to know two-way-binding can be setup on custom element with own props, it's not restricted to working with input only, however input are one of the most prominent use cases for  two-way-binding
     -->
     <Toggle bind:choosenOption="{selectedOption}" />
+    <!--
+    <input type="number" value="{price}" on:input="{event => console.log ("event.target.value","1" + event.target.value)}" >
+    -->
+    <!--Svelte help using two-way-binding, when fetching data from input with type number or with type range, svelte convert automatically get number and no need convert manualy from string into number  -->
+    <input type="number" bind:value="{price}" />
 
 
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
