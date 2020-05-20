@@ -26,7 +26,7 @@
 <style>
     article {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-        boder-radius: 5px;
+        border-radius: 5px;
         background: white;
         margin: 1rem;
     }

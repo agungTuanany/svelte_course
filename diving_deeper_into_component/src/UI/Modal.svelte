@@ -1,4 +1,5 @@
-<script> import { createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte"
+<script>
+    import { createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte"
 
     // ###############################################
     const dispatch = createEventDispatcher ()
