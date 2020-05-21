@@ -1,12 +1,14 @@
 <script>
     // Props
-    export let controlType = null
+    export let controlType      = null
     export let id
     export let label
     export let value
-    export let type = "text"
-    export let rows = null
-    export let cols = null
+    export let type             = "text"
+    export let rows             = null
+    export let cols             = null
+    export let valid            = true
+    export let validityMessage  = ""
 
 </script>
 <style>
@@ -39,13 +41,26 @@
         width: 100%;
         margin: 0,25rem 0;
     }
+
+    .invalid {
+        border-color: red;
+        background: #FDE3E3;
+    }
+
+    .error-message {
+        color: red;
+        margin: 0.25rem 0;
+    }
 </style>
 
 <div class="form-control">
     <label for="{id}">{label}</label>
     {#if controlType === "textarea"}
-        <textarea name="" id="{id}" {rows} {cols} {value} on:input></textarea>
+        <textarea class:invalid="{!valid}" id="{id}" {rows} {cols} {value} on:input></textarea>
     {:else}
-        <input type="{type}" {id} {value} on:input>
+        <input class:invalid="{!valid}" type="{type}" {id} {value} on:input>
+    {/if}
+    {#if validityMessage && !valid}
+        <p class="error-message">{validityMessage}</p>
     {/if}
 </div>
