@@ -12,6 +12,8 @@
     let radioFavColor       = "red"
     let checkboxFavColor    = ["green"]
     let singleFavColor      = "yellow"
+    let usernameInput       = null
+    let someDiv             = null
 
     // ###########################################
     // Reactive expression
@@ -27,6 +29,13 @@
     // Instant functions
     const  setValue =  (event) => val = event.target.value
 
+    const saveData = () => {
+        // console.log (document.querySelector ("#username").value)
+        console.log ("usernameInput.value: ",usernameInput.value)
+        console.dir ("full element", usernameInput)
+
+        console.dir ("someDiv", someDiv)
+    }
 </script>
 
 <style>
@@ -119,8 +128,18 @@
         <option value="yellow">Yellow</option>
         <option value="green">Green</option>
     </select>
+    <hr>
 
+    <!--
+        `bind:this` is specially understood by Svelte compiler, can store a reference to the element pointer into variable you choose.
+        So reference and connection is setup behind the scene by Svelte. This is not two-way-binding, this is just a pointer at the full element were not restricted to reading it's own value
+        NOTICE: changing something with is not RECOMMENDED, should do changing with svelte normal syntax, but reading values from "bind:this" is really useful
+    -->
+    <input type="text" id="username" bind:this="{usernameInput}">
+    <button on:click="{saveData}">Save</button>
 
+    <!-- binding in div element -->
+    <div bind:this="{someDiv}"> </div>
 
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
