@@ -11,20 +11,12 @@
     // ############################################
     // Props
     let title               = ""
-    let titleValid          = false
     let subtitle            = ""
-    let subtitleValid       = false
     let time                = ""
-    let timeValid           = false
     let imageUrl            = ""
-    let imageUrlValid       = false
     let address             = ""
-    let addressValid        = false
     let email               = ""
-    let emailValid          = false
     let description         = ""
-    let descriptionValid    = false
-    let formIsValid         = false
 
     const dispatch = createEventDispatcher ()
     // ############################################
@@ -131,13 +123,12 @@
         <TextInput
             id="description"
             label="description"
-            value="{description}"
             rows=4
             cols=8
             controlType="textarea"
             valid="{descriptionValid}"
             validityMessage="Please enter some description"
-            on:input={event => {description = event.target.value}}
+            bind:value="{description}"
         />
     </form>
     <div slot="footer">

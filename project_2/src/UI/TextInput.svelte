@@ -64,7 +64,7 @@
 <div class="form-control">
     <label for="{id}">{label}</label>
     {#if controlType === "textarea"}
-        <textarea class:invalid="{!valid && touched}" id="{id}" {rows} {cols} {value} on:input on:blur="{bindBlur}" />
+        <textarea class:invalid="{!valid && touched}" id="{id}" {rows} {cols} bind:value="{value}" on:blur="{bindBlur}" />
     {:else}
         <input class:invalid="{!valid && touched}" type="{type}" {id} {value} on:input on:blur="{bindBlur}" />
     {/if}
