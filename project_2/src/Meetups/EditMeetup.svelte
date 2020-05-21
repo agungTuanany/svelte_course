@@ -24,6 +24,7 @@
     let emailValid          = false
     let description         = ""
     let descriptionValid    = false
+    let formIsValid         = false
 
     const dispatch = createEventDispatcher ()
     // ############################################
@@ -35,6 +36,13 @@
     $: addressValid     = !isEmpty (address)
     $: emailValid       = isValidEmail (email)
     $: descriptionValid = !isEmpty (description)
+    $: formIsValid = titleValid &&
+        subtitleValid &&
+        timeValid &&
+        imageUrlValid &&
+        addressValid &&
+        emailValid &&
+        descriptionValid
 
 
     // ############################################
@@ -134,6 +142,6 @@
     </form>
     <div slot="footer">
         <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>
-        <Button type="button" on:click={submitForm}>Save</Button>
+        <Button type="button" on:click={submitForm} disabled="{!formIsValid}">Save</Button>
     </div>
 </Modal>
