@@ -6,23 +6,35 @@
     import TextInput    from "./../UI/TextInput.svelte"
     import Button       from "./../UI/Button.svelte"
     import Modal        from "./../UI/Modal.svelte"
-    import { isEmpty }  from "./../helpers/validation.js"
+    import { isEmpty, isValidEmail }  from "./../helpers/validation.js"
 
     // ############################################
     // Props
-    let title       = ""
-    let titleValid  = false
-    let subtitle    = ""
-    let time        = ""
-    let imageUrl    = ""
-    let address     = ""
-    let email       = ""
-    let description = ""
+    let title               = ""
+    let titleValid          = false
+    let subtitle            = ""
+    let subtitleValid       = false
+    let time                = ""
+    let timeValid           = false
+    let imageUrl            = ""
+    let imageUrlValid       = false
+    let address             = ""
+    let addressValid        = false
+    let email               = ""
+    let emailValid          = false
+    let description         = ""
+    let descriptionValid    = false
 
     const dispatch = createEventDispatcher ()
     // ############################################
     // Reactive expression
-    $: titleValid = !isEmpty (title)
+    $: titleValid       = !isEmpty (title)
+    $: subtitleValid    = !isEmpty (subtitle)
+    $: timeValid        = !isEmpty (time)
+    $: imageUrlValid    = !isEmpty (imageUrl)
+    $: addressValid     = !isEmpty (address)
+    $: emailValid       = isValidEmail (email)
+    $: descriptionValid = !isEmpty (description)
 
 
     // ############################################
@@ -71,24 +83,32 @@
             id="subtitle"
             label="subtitle"
             value="{subtitle}"
+            valid="{subtitleValid}"
+            validityMessage="Please enter a subtitle"
             on:input={event => {subtitle = event.target.value}}
         />
         <TextInput
             id="time"
             label="time"
             value="{time}"
+            valid="{timeValid}"
+            validityMessage="Please enter a approximate time"
             on:input={event => {time = event.target.value}}
         />
         <TextInput
             id="imageUrl"
             label="imageUrl"
             value="{imageUrl}"
+            valid="{imageUrlValid}"
+            validityMessage="Please enter an image"
             on:input={event => {imageUrl = event.target.value}}
         />
         <TextInput
             id="address"
             label="address"
             value="{address}"
+            valid="{addressValid}"
+            validityMessage="Please enter a valid address"
             on:input={event => {address = event.target.value}}
         />
         <TextInput
@@ -96,6 +116,8 @@
             label="E-mail"
             type="email"
             value="{email}"
+            valid="{emailValid}"
+            validityMessage="Please enter a correct email"
             on:input={event => {email = event.target.value}}
         />
         <TextInput
@@ -105,6 +127,8 @@
             rows=4
             cols=8
             controlType="textarea"
+            valid="{descriptionValid}"
+            validityMessage="Please enter some description"
             on:input={event => {description = event.target.value}}
         />
     </form>

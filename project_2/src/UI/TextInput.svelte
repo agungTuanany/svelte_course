@@ -10,6 +10,14 @@
     export let valid            = true
     export let validityMessage  = ""
 
+    // ############################################
+    // State Management
+    let touched = false
+
+    // ############################################
+    // Instant functions
+    let bindBlur = () => touched = true
+
 </script>
 <style>
     input,
@@ -56,11 +64,11 @@
 <div class="form-control">
     <label for="{id}">{label}</label>
     {#if controlType === "textarea"}
-        <textarea class:invalid="{!valid}" id="{id}" {rows} {cols} {value} on:input></textarea>
+        <textarea class:invalid="{!valid && touched}" id="{id}" {rows} {cols} {value} on:input on:blur="{bindBlur}" />
     {:else}
-        <input class:invalid="{!valid}" type="{type}" {id} {value} on:input>
+        <input class:invalid="{!valid && touched}" type="{type}" {id} {value} on:input on:blur="{bindBlur}" />
     {/if}
-    {#if validityMessage && !valid}
+    {#if validityMessage && !valid && touched}
         <p class="error-message">{validityMessage}</p>
     {/if}
 </div>
