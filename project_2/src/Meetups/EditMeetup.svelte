@@ -6,10 +6,12 @@
     import TextInput    from "./../UI/TextInput.svelte"
     import Button       from "./../UI/Button.svelte"
     import Modal        from "./../UI/Modal.svelte"
+    import { isEmpty }  from "./../helpers/validation.js"
 
     // ############################################
     // Props
     let title       = ""
+    let titleValid  = false
     let subtitle    = ""
     let time        = ""
     let imageUrl    = ""
@@ -18,6 +20,11 @@
     let description = ""
 
     const dispatch = createEventDispatcher ()
+    // ############################################
+    // Reactive expression
+    $: titleValid = !isEmpty (title)
+
+
     // ############################################
     // Instant functions
     const submitForm = () => {
@@ -56,7 +63,7 @@
             id="title"
             label="title"
             value="{title}"
-            valid="{true}"
+            valid="{titleValid}"
             validityMessage="Please enter a valid title"
             on:input={event => {title = event.target.value}}
         />
