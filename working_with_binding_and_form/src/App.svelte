@@ -1,7 +1,8 @@
 <script>
     // Buildin dependencies
-    import CustomInput  from "./UI/CustomInput.svelte"
-    import Toggle       from "./UI/Toggle.svelte"
+    import CustomInput      from "./UI/CustomInput.svelte"
+    import Toggle           from "./UI/Toggle.svelte"
+    import { isValidEmail}  from "./lib/validation.js"
 
     // ###########################################
     // Props
@@ -15,8 +16,19 @@
     let usernameInput       = null
     let someDiv             = null
     let customInput         = null
+    let enteredEmail        = ""
+    let formIsValid         = false
 
     // ###########################################
+
+    // Buildin validation
+    $: if (isValidEmail (enteredEmail)) {
+        formIsValid = true
+    }
+    else {
+        formIsValid = false
+    }
+
     // Reactive expression
     $: console.log ("val", val)
     $: console.log ("selectedOptions", selectedOption)
@@ -37,7 +49,7 @@
         console.dir ("full element", usernameInput)
 
         console.dir ("someDiv", someDiv)
-        custominput.empty ()
+        customInput.empty ()
     }
 </script>
 
@@ -54,6 +66,10 @@
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 100;
+    }
+
+    .invalid {
+        border: 1px solid red;
     }
 
     @media (min-width: 640px) {
@@ -139,11 +155,22 @@
         So reference and connection is setup behind the scene by Svelte. This is not two-way-binding, this is just a pointer at the full element were not restricted to reading it's own value
         NOTICE: changing something with is not RECOMMENDED, should do changing with svelte normal syntax, but reading values from "bind:this" is really useful
     -->
+    <h1>Binding Custom Element</h1>
     <input type="text" id="username" bind:this="{usernameInput}">
     <button on:click="{saveData}">Save</button>
 
     <!-- binding in div element -->
     <div bind:this="{someDiv}"> </div>
+
+    <hr>
+    <!--
+        Which capability does Svelte have when it come to offering help on validating input? None. Svelte not offered completed buildin validation solution. Instead Svelte give a tool to build your own validation.
+    -->
+    <h1>Binding Validation</h1>
+    <form  on:submit|preventDefault>
+        <input type="email" bind:value="{enteredEmail}" class="{isValidEmail (enteredEmail) ? "" : "invalid"}">
+        <button type="submit" disabled="{!formIsValid}">Save</button>
+    </form>
 
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
