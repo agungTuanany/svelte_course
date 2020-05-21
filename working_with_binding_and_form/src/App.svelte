@@ -5,15 +5,21 @@
 
     // ###########################################
     // Props
-    let val = ""
-    let selectedOption = 1
-    let price = 0
+    let val                 = null
+    let selectedOption      = 1
+    let price               = 0
+    let agreed              = null
+    let radioFavColor       = "red"
+    let checkboxFavColor    = ["green"]
 
     // ###########################################
     // Reactive expression
     $: console.log ("val", val)
     $: console.log ("selectedOptions", selectedOption)
     $: console.log ("price", price)
+    $: console.log ("agreed", agreed)
+    $: console.log ("radioFavColor", radioFavColor)
+    $: console.log ("checkboxFavColor", checkboxFavColor)
 
     // ###########################################
     // Instant functions
@@ -69,6 +75,37 @@
     <!--Svelte help using two-way-binding, when fetching data from input with type number or with type range, svelte convert automatically get number and no need convert manualy from string into number  -->
     <input type="number" bind:value="{price}" />
 
+    <label for="">
+        <input type="checkbox" bind:checked="{agreed}">
+        Agree to term?
+    </label>
 
+    <h1>Radio Button Favorite color</h1>
+    <label for="">
+        <input type="radio" name="color" id="" value="red" bind:group="{radioFavColor}">
+        Red
+    </label>
+    <label for="">
+        <input type="radio" name="color" id="" value="yellow" bind:group="{radioFavColor}">
+        Yellow
+    </label>
+    <label for="">
+        <input type="radio" name="color" id="" value="green" bind:group="{radioFavColor}">
+        Green
+    </label>
+
+    <h1>Checkbox Favorite color</h1>
+    <label for="">
+        <input type="checkbox" name="color" id="" value="red" bind:group="{checkboxFavColor}">
+        Red
+    </label>
+    <label for="">
+        <input type="checkbox" name="color" id="" value="yellow" bind:group="{checkboxFavColor}">
+        Yellow
+    </label>
+    <label for="">
+        <input type="checkbox" name="color" id="" value="green" bind:group="{checkboxFavColor}">
+        Green
+    </label>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
