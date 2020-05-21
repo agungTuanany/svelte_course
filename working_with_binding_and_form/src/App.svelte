@@ -11,6 +11,7 @@
     let agreed              = null
     let radioFavColor       = "red"
     let checkboxFavColor    = ["green"]
+    let singleFavColor      = "yellow"
 
     // ###########################################
     // Reactive expression
@@ -20,6 +21,7 @@
     $: console.log ("agreed", agreed)
     $: console.log ("radioFavColor", radioFavColor)
     $: console.log ("checkboxFavColor", checkboxFavColor)
+    $: console.log ("singleFavColor", singleFavColor)
 
     // ###########################################
     // Instant functions
@@ -107,5 +109,18 @@
         <input type="checkbox" name="color" id="" value="green" bind:group="{checkboxFavColor}">
         Green
     </label>
+
+    <!--
+        The value on option can be set dynamically help with {#each} block, and the value doesn't have to be a string, Svelte support bind select dropdowns to an object.
+    -->
+    <h1>Select Dropdown Favorite Color</h1>
+    <select bind:value="{singleFavColor}">
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="green">Green</option>
+    </select>
+
+
+
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
