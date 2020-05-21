@@ -5,7 +5,7 @@
 
     // ###########################################
     // Props
-    let val                 = null
+    let val                 = ""
     let selectedOption      = 1
     let price               = 0
     let agreed              = null
@@ -14,6 +14,7 @@
     let singleFavColor      = "yellow"
     let usernameInput       = null
     let someDiv             = null
+    let customInput         = null
 
     // ###########################################
     // Reactive expression
@@ -24,6 +25,7 @@
     $: console.log ("radioFavColor", radioFavColor)
     $: console.log ("checkboxFavColor", checkboxFavColor)
     $: console.log ("singleFavColor", singleFavColor)
+    $: console.log ("customInput", customInput)
 
     // ###########################################
     // Instant functions
@@ -35,6 +37,7 @@
         console.dir ("full element", usernameInput)
 
         console.dir ("someDiv", someDiv)
+        custominput.empty ()
     }
 </script>
 
@@ -68,7 +71,8 @@
         if You had a variable "value" instead of "val", you can also use a shorthand notation:"bind:value" (instead of "bind:value={value}")
     -->
     <!-- <input type="text" bind:value={val} /> -->
-    <CustomInput bind:val="{val}" />
+    <!-- If you have use case were you really need to trigger a function inside of the component this how you can do it -->
+    <CustomInput bind:val="{val}" bind:this="{customInput}" />
 
     <!--
         two way binding in custom element
