@@ -6,6 +6,7 @@
     export let title
     export let price
     export let id
+    export let info
 
     let showDescription  = false
 
@@ -43,6 +44,7 @@
 <li>
     <h1>{title}</h1>
     <h2>{price}</h2>
+    <h2>{info}</h2>
     <Button mode="outline" on:click={displayDecription}>
         {showDescription ? "Hide Description" : "Show Description"}
     </Button>

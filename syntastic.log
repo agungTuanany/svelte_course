@@ -1,0 +1,87 @@
+
+--- Signs ---
+Signs for managing_state_and_data_with_store/src/Cart/cart-store.js:
+    line=1  id=5002  name=SyntasticError  priority=10
+
+
+Syntastic version: 3.10.0-8 (Vim 801, Linux)
+Info for filetype: javascript
+Global mode: active
+Filetype javascript is active
+Available checkers: eslint jshint jslint
+Currently enabled checkers: jshint jslint
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim-- INSERT ---- INSERT ---- INSERT ---- VISUAL BLOCK --
+
+block of 3 lines yanked
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim
+728 lines to indent... 
+700 lines to indent... 
+650 lines to indent... 
+600 lines to indent... 
+550 lines to indent... 
+500 lines to indent... 
+450 lines to indent... 
+400 lines to indent... 
+350 lines to indent... 
+300 lines to indent... 
+250 lines to indent... 
+200 lines to indent... 
+150 lines to indent... 
+100 lines to indent... 
+50 lines to indent... 
+729 lines indented 
+
+
+
+First of 7 matches   /syntastic/
+
+
+
+Match 2 of 7  /syntastic/-- VISUAL --
+
+
+
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim
+
+"~/.vim/vimrc" 
+"~/.vim/vimrc" 729L, 21638C written
+"~/.vim/vimrc" 729L, 21638C written
+--- Signs ---
+Signs for managing_state_and_data_with_store/src/Cart/cart-store.js:
+    line=1  id=5002  name=SyntasticError  priority=10
+
+
+jsTemplateExpression xxx cleared
+jsTemplateExpression xxx cleared
+jsTemplateExpression xxx cleared
+-- INSERT --
+1 change; before #9  3 seconds ago
+1 change; before #9  3 seconds ago
+4 more lines; before #8  19:43:37
+4 more lines; before #8  19:43:37-- VISUAL LINE --
+
+4 lines yanked
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim
+9 lines to indent... 
+10 lines indented -- INSERT ---- VISUAL LINE ---- VISUAL BLOCK ---- INSERT --
+
+Type  :qa!  and press <Enter> to abandon all changes and exit Vim
+
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 10L, 155C written
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 10L, 155C written
+--- Signs ---
+
+
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 10L, 155C written
+"managing_state_and_data_with_store/src/Cart/cart-store.js" 10L, 155C written
+--- Signs ---
+
+
+
+BufKill: already at the limit of the BufKill list
+1 buffer deleted
+"[No Name]" --No lines in buffer--
+

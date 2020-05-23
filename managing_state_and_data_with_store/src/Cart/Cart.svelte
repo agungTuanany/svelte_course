@@ -1,18 +1,32 @@
 <script>
     import CartItem from "./CartItem.svelte"
+    import cartItems from "./cart-store.js"
 
-    export let items = [
-        {
-            id      : "p1",
-            title   : "Test",
-            price   : 9.99
-        },
-        {
-            id      : "p2",
-            title   : "Test",
-            price   : 9.99
-        }
-    ]
+    // ##################################
+    let items = null
+
+
+
+
+    // ##################################
+//    export let items = [
+//        {
+//            id      : "p1",
+//            title   : "Test",
+//            price   : 9.99
+//        },
+//        {
+//            id      : "p2",
+//            title   : "Test",
+//            price   : 9.99
+//        }
+//    ]
+
+    // ##################################
+    cartItems.subscribe (itemCart => {
+        items = itemCart
+    })
+
 </script>
 
 <style>
@@ -35,7 +49,7 @@
     <h1>Cart</h1>
     <ul>
         {#each items as item (item.id)}
-            <CartItem id={item.id} title={item.title} price={item.price} />
+            <CartItem id={item.id} title={item.title} price={item.price} info={item.info} />
         {:else}
             <p>No item in cart yet</p>
         {/each}
