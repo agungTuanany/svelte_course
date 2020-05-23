@@ -3,16 +3,18 @@
 
     let products = [
         {
-            id: "p1",
-            title: "A Book",
-            price: 9.99,
-            description: "A great book!"
+            id          : "p1",
+            title       : "A Book",
+            price       : 9.99,
+            description : "A great book!",
+            info        : "updating from Products.svelte"
         },
         {
-            id: "p2",
-            title: "A Carpet",
-            price: 99.99,
-            description: "Red and green."
+            id          : "p2",
+            title       : "A Carpet",
+            price       : 99.99,
+            description : "Red and green.",
+            info        : "updating from Products.svelte"
         }
     ];
 </script>
@@ -32,6 +34,7 @@
             id={product.id}
             title={product.title}
             price={product.price}
+            info={product.info}
             description={product.description} />
     {/each}
 </section>
