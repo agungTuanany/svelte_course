@@ -20,16 +20,25 @@
 //        }
 //    ]
 
-    // ##################################
-    const unsubscribe = cartItems.subscribe (itemCart => {
-        items = itemCart
-    })
+    /*
+     * It's still useful to know the manual setup, manual setup needed whenever you need to do anything else with the data from the store.
+     * If you need transform the data before used in markup, if you need calculation, if you want to send to server, in all these cases
+     * you need to get access to Store manually in your JavaScript code because you can run your logic.
+     *
+     * But if all you need to do is get it and out put it without any transformation then you can use auto-subscription
+     *
+     */
 
-    onDestroy( () =>{
-        if (unsubscribe) {
-            unsubscribe ()
-        }
-    })
+    // ##################################
+    // const unsubscribe = cartItems.subscribe (itemCart => {
+    //     items = itemCart
+    // })
+
+    // onDestroy( () =>{
+    //     if (unsubscribe) {
+    //         unsubscribe ()
+    //     }
+    // })
 
 </script>
 
@@ -52,7 +61,7 @@
 <section>
     <h1>Cart</h1>
     <ul>
-        {#each items as item (item.id)}
+        {#each $cartItems as item (item.id)}
             <CartItem id={item.id} title={item.title} price={item.price} info={item.info} />
         {:else}
             <p>No item in cart yet</p>
