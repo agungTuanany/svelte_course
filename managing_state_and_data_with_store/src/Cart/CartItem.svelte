@@ -1,5 +1,7 @@
 <script>
-    import Button from "./../UI/Button.svelte"
+    import cartItems    from "./cart-store.js"
+    import { products } from "./../Products/products-store.js"
+    import Button       from "./../UI/Button.svelte"
 
     // #####################################
     // Props
@@ -13,9 +15,19 @@
     // #####################################
     // Instant functions
     const displayDecription = () => showDescription = !showDescription
-    const removeFromCart = () => {
-        // ...
-        console.log ("Removing ...")
+
+    // const removeFromCart = () => {
+    //     cartItems.update (items => {
+    //         return items.filter (item => item.id == id)
+    //     })
+    // }
+
+    function removeFromCart () {
+        cartItems.update (items => {
+            console.log (items)
+            return items.filter (i => i.id === id)
+        })
+
     }
 </script>
 

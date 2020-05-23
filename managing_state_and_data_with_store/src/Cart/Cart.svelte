@@ -7,18 +7,18 @@
     let items = null
 
     // ##################################
-//    export let items = [
-//        {
-//            id      : "p1",
-//            title   : "Test",
-//            price   : 9.99
-//        },
-//        {
-//            id      : "p2",
-//            title   : "Test",
-//            price   : 9.99
-//        }
-//    ]
+    //    export let items = [
+    //        {
+    //            id      : "p1",
+    //            title   : "Test",
+    //            price   : 9.99
+    //        },
+    //        {
+    //            id      : "p2",
+    //            title   : "Test",
+    //            price   : 9.99
+    //        }
+    //    ]
 
     /*
      * It's still useful to know the manual setup, manual setup needed whenever you need to do anything else with the data from the store.

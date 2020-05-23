@@ -17,6 +17,7 @@
                     id      : id,
                     title   : title,
                     price   : price,
+                    info    : info
                 }
             ]
         })
