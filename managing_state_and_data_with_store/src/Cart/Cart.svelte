@@ -1,6 +1,7 @@
 <script>
-    import CartItem from "./CartItem.svelte"
-    import cartItems from "./cart-store.js"
+    import { onDestroy }    from "svelte"
+    import CartItem         from "./CartItem.svelte"
+    import cartItems        from "./cart-store.js"
 
     // ##################################
     let items = null
@@ -20,8 +21,14 @@
 //    ]
 
     // ##################################
-    cartItems.subscribe (itemCart => {
+    const unsubscribe = cartItems.subscribe (itemCart => {
         items = itemCart
+    })
+
+    onDestroy( () =>{
+        if (unsubscribe) {
+            unsubscribe ()
+        }
     })
 
 </script>
