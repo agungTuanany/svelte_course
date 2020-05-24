@@ -38,10 +38,7 @@
     // }
 
     function removeFromCart () {
-        cartItems.update (items => {
-            console.log (items)
-            return items.filter (i => i.id !== id)
-        })
+        cartItems.removeItem (id)
     }
 </script>
 
