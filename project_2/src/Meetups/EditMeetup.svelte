@@ -7,6 +7,8 @@
     import Button       from "./../UI/Button.svelte"
     import Modal        from "./../UI/Modal.svelte"
     import { isEmpty, isValidEmail }  from "./../helpers/validation.js"
+    import meetups      from "./meetup-store"
+
 
     // ############################################
     // Props
@@ -40,15 +42,24 @@
     // ############################################
     // Instant functions
     const submitForm = () => {
-        dispatch ("save", {
+        const meetupData = {
             title           : title,
             subtitle        : subtitle,
             time            : time,
             imageUrl        : imageUrl,
             address         : address,
-            email           : email,
+            contactEmail    : email,
             description     : description
-        })
+        }
+
+        /*
+         * Using meetups.push() it doesn't work in svelteJS, the problem are, push() method is not a trigger that signal
+         * to use svelte that needs to checks the DOM potentially update the DOM.
+         */
+        // meetups.push (newMeetup) // DOES NOT WORK !!
+        meetups.addMeetup (meetupData)
+
+        dispatch ("save")
     }
 
     function cancel () {
