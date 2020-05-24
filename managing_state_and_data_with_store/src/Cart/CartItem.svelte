@@ -1,6 +1,6 @@
 <script>
     import cartItems    from "./cart-store.js"
-    import { products } from "./../Products/products-store.js"
+    import { products } from "./../Products/product-store.js"
     import Button       from "./../UI/Button.svelte"
 
     // #####################################
@@ -11,10 +11,25 @@
     export let info
 
     let showDescription  = false
+    let description = "Not available"
+    // let fetchedProducts = []
 
     // #####################################
     // Instant functions
-    const displayDecription = () => showDescription = !showDescription
+
+    // products.subscribe (prods => {
+    //     fetchedProducts = prods
+    // })
+
+
+    const displayDescription = () =>{
+        showDescription = !showDescription
+        // description = fetchedProducts.find (p => p.id === id).description
+        const unsubscribe = products.subscribe (prods => {
+            description = prods.find (p => p.id === id).description
+        })
+        unsubscribe ()
+    }
 
     // const removeFromCart = () => {
     //     cartItems.update (items => {
@@ -25,9 +40,8 @@
     function removeFromCart () {
         cartItems.update (items => {
             console.log (items)
-            return items.filter (i => i.id === id)
+            return items.filter (i => i.id !== id)
         })
-
     }
 </script>
 
@@ -57,11 +71,11 @@
     <h1>{title}</h1>
     <h2>{price}</h2>
     <h2>{info}</h2>
-    <Button mode="outline" on:click={displayDecription}>
+    <Button mode="outline" on:click={displayDescription}>
         {showDescription ? "Hide Description" : "Show Description"}
     </Button>
     <Button on:click={removeFromCart}>Remove From Cart</Button>
     {#if showDescription}
-        <p>Not Available</p>
+        <p>{description}</p>
     {/if}
 </li>
