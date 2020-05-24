@@ -14,8 +14,7 @@
     // ####################################################
 
     function addMeetup (event) {
-        const newMeetup = {
-            id              : Math.random ().toString (),
+        const meetupData = {
             title           : event.detail.title,
             subtitle        : event.detail.subtitle,
             time            : event.detail.time,
@@ -30,19 +29,14 @@
          * to use svelte that needs to checks the DOM potentially update the DOM.
          */
         // meetups.push (newMeetup) // DOES NOT WORK !!
-        meetups = [newMeetup, ...meetups]
+        meetups.addMeetup (meetupData)
         editMode = null
 
     }
 
     function toggleFavorite (event) {
         const id = event.detail
-        const updatedMeetup = { ...meetups.find(m => m.id === id) }
-        updatedMeetup.isFavorite = !updatedMeetup.isFavorite
-        const meetupIndex = meetups.findIndex(m => m.id === id)
-        const updatedMeetups = [...meetups]
-        updatedMeetups[meetupIndex] = updatedMeetup
-        meetups = updatedMeetups
+        meetups.toggleFavorite (id)
     }
 
     function cancelEdit () {
@@ -70,7 +64,7 @@
     {#if editMode === "add"}
         <EditMeetup on:save="{addMeetup}" on:cancel="{cancelEdit}"/>
     {/if}
-    <MeetupGrid {$meetups} on:toggle-fav="{toggleFavorite}"/>
+    <MeetupGrid meetups={$meetups} on:toggle-fav="{toggleFavorite}"/>
 
 </main>
 
