@@ -12,6 +12,9 @@ public/build/
 .env.test
 .env.json
 
+# vim syntastic
+syntastic.log
+
 # temporary
 ~*/
 note.md
