@@ -33,6 +33,7 @@
             description="{meetup.description}"
             email="{meetup.contactEmail}"
             isFav="{meetup.isFavorite}"
+            on:showdetails
             />
     {/each}
 </section>

@@ -8,7 +8,7 @@ const meetups = writable ([
         subtitle        : "Create a todo with svelte",
         time            : "16:00 GMT",
         description     : "In this meetup, we will have some exprets talks about front-end development",
-        imageUrl        :  "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
+        imageUrl        : "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
         address         : "27th Munchies Road, 22441 New Mark",
         contactEmail    : "code@test.com",
         isFavorite      : false

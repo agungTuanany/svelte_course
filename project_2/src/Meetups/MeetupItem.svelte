@@ -1,5 +1,6 @@
 <script>
     // Dependencies
+    import { createEventDispatcher } from "svelte"
 
     // Buildin dependencies
     import Button       from "./../UI/Button.svelte"
@@ -19,12 +20,12 @@
     export let email
     export let isFav
 
+    const dispatch = createEventDispatcher ()
 
     // ############################################
     // Instant function
     function toggleFavorite () {
         meetups.toggleFavorite (id)
-
     }
 
 </script>
@@ -107,7 +108,7 @@
     </div>
     <footer>
         <Button href="mailto:{email}" >Contact</Button>
-        <Button type="button">Show Details</Button>
+            <Button type="button" on:click="{() => dispatch ("showdetails", id)}">Show Details</Button>
         <Button
             mode="outline"
             color="{isFav ? null : "success"}"
