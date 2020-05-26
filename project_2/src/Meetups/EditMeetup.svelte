@@ -12,6 +12,8 @@
 
     // ############################################
     // Props
+    export let id = null
+
     let title               = ""
     let subtitle            = ""
     let time                = ""
@@ -41,7 +43,26 @@
 
     // ############################################
     // Instant functions
-    const submitForm = () => {
+
+    // if id is not null
+    if (id) {
+        const unsubscribe = meetups.subscribe ((items) => {
+            const selectedMeetup = items.find ((i) => i.id === id)
+            title           = selectedMeetup.title
+            subtitle        = selectedMeetup.subtitle
+            time            = selectedMeetup.time
+            imageUrl        = selectedMeetup.imageUrl
+            address         = selectedMeetup.address
+            email           = selectedMeetup.contactEmail
+            description     = selectedMeetup.description
+        })
+
+        // unsubscribe after fetching data
+        unsubscribe ()
+    }
+
+
+    function submitForm () {
         const meetupData = {
             title           : title,
             subtitle        : subtitle,
@@ -52,12 +73,17 @@
             description     : description
         }
 
-        /*
-         * Using meetups.push() it doesn't work in svelteJS, the problem are, push() method is not a trigger that signal
-         * to use svelte that needs to checks the DOM potentially update the DOM.
-         */
+        // Using meetups.push() it doesn't work in svelteJS, the problem are, push() method is not a trigger that signal
+        // use svelte that needs to checks the DOM potentially update the DOM.
         // meetups.push (newMeetup) // DOES NOT WORK !!
-        meetups.addMeetup (meetupData)
+
+        // If have an id = edit mode
+        if (id) {
+            meetups.updateMeetup (id, meetupData)
+        }
+        else {
+            meetups.addMeetup (meetupData)
+        }
 
         dispatch ("save")
     }

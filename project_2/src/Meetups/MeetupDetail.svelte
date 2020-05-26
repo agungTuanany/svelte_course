@@ -12,9 +12,6 @@
 
     // ################################################
     // Instant functions
-   // const unsubscribe = meetups.subscribe ((items) => {
-   //     selectedMeetup = items.find (i => i.id === id)
-   // })
 
     const unsubscribe = meetups.subscribe(items => {
         selectedMeetup = items.find(i => i.id === id);

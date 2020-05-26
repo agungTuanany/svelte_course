@@ -30,6 +30,11 @@
         pageData.id = event.detail
     }
 
+    function closeDetails () {
+        page="overview"
+        pageData = {}
+    }
+
 </script>
 
 <style>
@@ -37,7 +42,7 @@
         margin-top: 5rem;
     }
 
-    .meetup-control {
+    .meetup-controls {
         margin: 1rem;
     }
 
@@ -53,9 +58,9 @@
         {#if editMode === "add"}
             <EditMeetup on:save="{addMeetup}" on:cancel="{cancelEdit}"/>
         {/if}
-        <MeetupGrid meetups={$meetups} on:showdetails="{showDetails}" />
+        <MeetupGrid meetups="{$meetups}" on:showdetails="{showDetails}" />
     {:else}
-        <MeetupDetail id="{pageData.id}" />
+        <MeetupDetail id="{pageData.id}" on:close="{closeDetails}" />
     {/if}
 
 </main>
