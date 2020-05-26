@@ -1,6 +1,9 @@
 <script>
     import { writable } from "svelte/store";
+    import { tweened, spring } from "svelte/motion"
 
+    // NOTE: tweened & spring out of the box only work on "dates" and "number" even stored as directly as single number,
+    // or store in array, or store in an object, or in an array of object were then every property only must hold number or date values
     let cards = writable([
         {
             id: "c1",
@@ -19,7 +22,7 @@
             color: "orange"
         }
     ]);
-    let cardPos = writable([
+    let cardPos = spring([
         {
             rotation: 10,
             dx: 0
@@ -36,16 +39,20 @@
             rotation: -25,
             dx: 0
         }
-    ]);
+    ], {
+        stiffness   : 0.05,
+        damping     : 0.9,
+        precision   : 0.091
+    });
 
     function discard(index) {
         cardPos.update(items => {
-            const updatedCardPositions = [...items];
-            const updatedCardPos = { ...updatedCardPositions[index] };
-            updatedCardPos.dx = 1200;
-            updatedCardPos.rotation = 60;
-            updatedCardPositions[index] = updatedCardPos;
-            return updatedCardPositions;
+            const updatedCardPositions = [...items]
+            const updatedCardPos = { ...updatedCardPositions[index] }
+            updatedCardPos.dx = 1200
+            updatedCardPos.rotation = 60
+            updatedCardPositions[index] = updatedCardPos
+            return updatedCardPositions
         });
     }
 </script>

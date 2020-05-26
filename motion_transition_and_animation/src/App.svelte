@@ -1,8 +1,14 @@
 <script>
+    // ####################################
+    // Dependencies
     import { writable } from "svelte/store"
     import { tweened } from "svelte/motion"
     import { cubicIn } from "svelte/easing"
 
+    // Buildin Dependencies
+    import Spring from "./Spring.svelte"
+
+    // ####################################
     // const progress = writable (0)
     const progress = tweened (0, {
         delay           : 0,
@@ -22,5 +28,6 @@
 </style>
 
 <main>
-    <progress value={$progress}></progress>
+    <Spring />
+    <!-- <progress value={$progress}></progress> -->
 </main>
