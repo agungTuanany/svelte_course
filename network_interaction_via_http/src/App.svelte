@@ -1,38 +1,47 @@
 <script>
+    import { onMount } from "svelte"
+
     // ################################################
     let hobbies = []
     let hobbyInput
     let isLoading = false
 
-    // ################################################
-    //
-    fetch ("https://svelte-course-57736.firebaseio.com/hobbies.json")
-        .then (res => {
-            if (!res.ok) {
-                throw new Error ("Fetching Firebase Failed")
-            }
-            // ....
-            return res.json ()
-        })
-        .then (data => {
-            // 1. common extracting data with fetch Object.values
-            hobbies = Object.values (data)
 
-            // 2. Using unique id's
-            let keys = Object.keys (data)
-            console.log (keys)
-
-            // 3.Using for in loop
-            for (let key in data) {
-                console.log (key, data[key])
-            //    hobbies =  data [key]
-            }
-        })
-        .catch (err => {
-            console.log (err)
-        })
 
     // ################################################
+    // Fetching data on initial load with onMount svelte method
+    onMount (() => {
+        isLoading = true
+        // ################################################
+        // Fetching data from firebase
+        fetch ("https://svelte-course-57736.firebaseio.com/hobbies.json")
+            .then (res => {
+                if (!res.ok) {
+                    throw new Error ("Fetching Firebase Failed")
+                }
+                // ....
+                return res.json ()
+            })
+            .then (data => {
+                isLoading =false
+                // 1. common extracting data with fetch Object.values
+                hobbies = Object.values (data)
+
+                // 2. Using unique id's
+                let keys = Object.keys (data)
+                console.log (keys)
+
+                // 3.Using for in loop
+                for (let key in data) {
+                    console.log (key, data[key])
+                    //    hobbies =  data [key]
+                }
+            })
+            .catch (err => {
+                isLoading =false
+                console.log (err)
+            })
+    })
     function addHobby () {
         hobbies = [...hobbies, hobbyInput.value]
 
