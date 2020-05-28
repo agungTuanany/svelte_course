@@ -5,6 +5,34 @@
     let isLoading = false
 
     // ################################################
+    //
+    fetch ("https://svelte-course-57736.firebaseio.com/hobbies.json")
+        .then (res => {
+            if (!res.ok) {
+                throw new Error ("Fetching Firebase Failed")
+            }
+            // ....
+            return res.json ()
+        })
+        .then (data => {
+            // 1. common extracting data with fetch Object.values
+            hobbies = Object.values (data)
+
+            // 2. Using unique id's
+            let keys = Object.keys (data)
+            console.log (keys)
+
+            // 3.Using for in loop
+            for (let key in data) {
+                console.log (key, data[key])
+            //    hobbies =  data [key]
+            }
+        })
+        .catch (err => {
+            console.log (err)
+        })
+
+    // ################################################
     function addHobby () {
         hobbies = [...hobbies, hobbyInput.value]
 
