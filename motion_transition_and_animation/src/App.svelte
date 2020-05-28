@@ -1,9 +1,16 @@
 <script>
+    /*
+    * NOTE: Transition differ from motion, motion essentially animated value, transition essentially animated appearance
+    * and disappearance of element, so element rendered in a DOM.
+    *
+     */
+
     // ####################################
     // Dependencies
     import { writable } from "svelte/store"
     import { tweened } from "svelte/motion"
     import { cubicIn } from "svelte/easing"
+    import { fade, fly, slide, scale } from"svelte/transition"
 
     // Buildin Dependencies
     import Spring from "./Spring.svelte"
@@ -28,6 +35,10 @@
     function addBox () {
         boxes = [...boxes, boxInput.value]
     }
+
+    function discard (value) {
+        boxes = boxes.filter (el => el !== value)
+    }
 </script>
 
 
@@ -50,6 +61,14 @@
     <input type="text" bind:this="{boxInput}">
     <button on:click="{addBox}">Add</button>
     {#each boxes as box (box)}
-        <div>{box}</div>
+
+        <!-- XXX NOTE: change transition value as: "fade", "fly", "slide", "scale" XXX
+            XXX NOTE: transition:fly={{}} <== the double curly braces is not a syntax instead still a single curly braces
+            that tells Svelte that about to add dynamic calculated value, but then the dynamic calculated value is simply
+            is a JavaScript object
+        -->
+
+        <!-- <div transition:scale={{easing: cubicIn, opacity: 0.50 }}>{box}</div> -->
+        <div transition:fly={{easing: cubicIn, x: 200, y: 0}} on:click="{discard.bind (this, box)}">{box}</div>
     {/each}
 </main>
