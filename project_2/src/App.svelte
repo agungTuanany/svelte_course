@@ -15,7 +15,30 @@
     let pageData    = {}
     let editedId    = null
 
+
     // ####################################################
+
+    // fetch meetups data from firestore
+    fetch ("https://svelte-course-57736.firebaseio.com/meetups.json")
+        .then (res => {
+            if (!res.ok) {
+                throw new Error ("Fetching data from server failed")
+            }
+             return res.json ()
+        })
+        .then (data => {
+            const loadedMeetups = []
+            for (const key in data) {
+                loadedMeetups.push ({
+                    ...data [key],
+                    id: key
+                })
+            }
+            meetups.setMeetups (loadedMeetups)
+        })
+        .catch (err => {
+            console.log (err)
+        })
 
     function savedMeetup (event) {
         editMode = null
