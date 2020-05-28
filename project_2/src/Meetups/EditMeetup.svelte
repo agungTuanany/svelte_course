@@ -73,13 +73,33 @@
             description     : description
         }
 
+        // XXX NOTE:
         // Using meetups.push() it doesn't work in svelteJS, the problem are, push() method is not a trigger that signal
         // use svelte that needs to checks the DOM potentially update the DOM.
         // meetups.push (newMeetup) // DOES NOT WORK !!
 
+        // "PUT" method use is overwrite all data in firebase (server) with new incoming data,
+        // "PATCH" method use is overwrite all data and keep the rest
+
+        // END NOTE XXX
+
         // If have an id = edit mode
         if (id) {
-            meetups.updateMeetup (id, meetupData)
+            fetch (`https://svelte-course-57736.firebaseio.com/meetups/${id}.json`, {
+                method      : "PATCH",
+                body        : JSON.stringify ({...meetupData}),
+                headers     : { "Content-Type": "application/json" }
+            })
+                .then (res => {
+                    if (!res.ok) {
+                        throw new Error ("PATCH method through server Failed")
+                    }
+                    // Update meetup locally
+                    meetups.updateMeetup (id, meetupData)
+                })
+                .catch (err => {
+                    console.log (err)
+                })
         }
         else {
             fetch ("https://svelte-course-57736.firebaseio.com/meetups.json", {
@@ -89,7 +109,7 @@
             })
                 .then (res => {
                     if (!res.ok) {
-                        throw new Error ("POST Method from to server Failed")
+                        throw new Error ("POST method from to server Failed")
                     }
 
                     return res.json ()
