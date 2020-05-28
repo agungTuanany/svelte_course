@@ -71,12 +71,10 @@
     <input type="text" bind:this="{boxInput}">
     <button on:click="{addBox}">Add</button>
 
-
     <!-- XXX NOTE: change transition value as: "fade", "fly", "slide", "scale" XXX
         XXX NOTE: transition:fly={{}} <== the double curly braces is not a syntax instead still a single curly braces
         that tells Svelte that about to add dynamic calculated value, but then the dynamic calculated value is simply
-        is a JavaScript object
-    -->
+        is a JavaScript object -->
 
     <!-- <div transition:scale={{easing: cubicIn, opacity: 0.50 }}>{box}</div> -->
 
