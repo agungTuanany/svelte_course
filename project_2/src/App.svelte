@@ -6,6 +6,7 @@
     import Button       from "./UI/Button.svelte"
     import EditMeetup   from "./Meetups/EditMeetup.svelte"
     import MeetupDetail from "./Meetups/MeetupDetail.svelte"
+    import LoadingSpinner from "./UI/LoadingSpinner.svelte"
 
     // ####################################################
     //let meetups = []
@@ -14,6 +15,7 @@
     let page        = "overview"
     let pageData    = {}
     let editedId    = null
+    let isLoading   = true
 
 
     // ####################################################
@@ -24,7 +26,7 @@
             if (!res.ok) {
                 throw new Error ("Fetching data from server failed")
             }
-             return res.json ()
+            return res.json ()
         })
         .then (data => {
             const loadedMeetups = []
@@ -34,9 +36,14 @@
                     id: key
                 })
             }
-            meetups.setMeetups (loadedMeetups)
+            // For Development environment
+            setTimeout (() => {
+                isLoading = false
+                meetups.setMeetups (loadedMeetups)
+            } , 1000)
         })
         .catch (err => {
+            isLoading = false
             console.log (err)
         })
 
@@ -82,7 +89,11 @@
         {#if editMode === "edit"}
             <EditMeetup id="{editedId}" on:save="{savedMeetup}" on:cancel="{cancelEdit}"/>
         {/if}
-        <MeetupGrid meetups="{$meetups}" on:showdetails="{showDetails}" on:edit="{startEdit}" on:add="{() => {editMode = "edit"}}"/>
+        {#if isLoading}
+            <LoadingSpinner />
+        {:else}
+            <MeetupGrid meetups="{$meetups}" on:showdetails="{showDetails}" on:edit="{startEdit}" on:add="{() => {editMode = "edit"}}"/>
+        {/if}
     {:else}
         <MeetupDetail id="{pageData.id}" on:close="{closeDetails}" />
     {/if}

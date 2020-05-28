@@ -26,21 +26,25 @@
 
 <style>
     #meetups {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 1rem;
+        width                       : 100%;
+        display                     : grid;
+        grid-template-columns       : 1fr;
+        grid-gap                    : 1rem;
     }
 
     #meetup-controls {
-        margin: 1rem;
-        display: flex;
-        justify-content: space-between;
+        margin                      : 1rem;
+        display                     : flex;
+        justify-content             : space-between;
+    }
+
+    #no-meetups {
+        margin                      : 1rem;
     }
 
     @media (min-width: 768px) {
         #meetups {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns   : repeat(2, 1fr);
         }
     }
 </style>
@@ -49,6 +53,9 @@
     <MeetupFilter on:select="{setFilter}"/>
     <Button on:click="{() => dispatch ("add")}">New Meetup</Button>
 </section>
+{#if filteredMeetups.length === 0}
+    <p id="no-meetups">No meetups founds, you can start adding some</p>
+{/if}
 
 <section id="meetups">
     {#each filteredMeetups as meetup (meetup.id)}
