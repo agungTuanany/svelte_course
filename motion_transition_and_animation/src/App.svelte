@@ -11,6 +11,7 @@
     import { tweened } from "svelte/motion"
     import { cubicIn } from "svelte/easing"
     import { fade, fly, slide, scale } from"svelte/transition"
+    import { flip } from "svelte/animate"
 
     // Buildin Dependencies
     import Spring from "./Spring.svelte"
@@ -34,7 +35,7 @@
     let boxes = []
 
     function addBox () {
-        boxes = [...boxes, boxInput.value]
+        boxes = [boxInput.value, ...boxes]
     }
 
     function discard (value) {
@@ -70,25 +71,29 @@
     <input type="text" bind:this="{boxInput}">
     <button on:click="{addBox}">Add</button>
 
+
+    <!-- XXX NOTE: change transition value as: "fade", "fly", "slide", "scale" XXX
+        XXX NOTE: transition:fly={{}} <== the double curly braces is not a syntax instead still a single curly braces
+        that tells Svelte that about to add dynamic calculated value, but then the dynamic calculated value is simply
+        is a JavaScript object
+    -->
+
+    <!-- <div transition:scale={{easing: cubicIn, opacity: 0.50 }}>{box}</div> -->
+
     {#if showParagraph}
         {#each boxes as box (box)}
-
-            <!-- XXX NOTE: change transition value as: "fade", "fly", "slide", "scale" XXX
-                XXX NOTE: transition:fly={{}} <== the double curly braces is not a syntax instead still a single curly braces
-                that tells Svelte that about to add dynamic calculated value, but then the dynamic calculated value is simply
-                is a JavaScript object
-            -->
-
-            <!-- <div transition:scale={{easing: cubicIn, opacity: 0.50 }}>{box}</div> -->
             <div
-                transition:fly|local={{easing: cubicIn, x: 200, y: 0}}
-                on:click="{discard.bind (this, box)}"
-                on:introstart="{() => console.log ("Adding the elements start")}"
-                on:introend="{() => console.log ("Adding the elements ends")}"
-                on:outrostart="{() => console.log ("Removing the elements start")}"
-                on:outroend="{() => console.log ("Removing the elements ends")}"
-                >
-                {box}</div>
+                transition:fly={{ x: 200, y: 0  }}
+                on:click={discard.bind(this, box)}
+                on:introstart={() => console.log ('Adding the element starts')}
+                on:introend={() => console.log ('Adding the element ends')}
+                on:outrostart={() => console.log ('Removing the element starts')}
+                on:outroend={() => console.log ('Removing the element ends')}
+                animate:flip={{duration: 300}}
+            >
+                {box}
+            </div>
         {/each}
     {/if}
+
 </main>
