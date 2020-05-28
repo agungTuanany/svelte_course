@@ -7,7 +7,6 @@
     let isLoading = false
 
 
-
     // ################################################
     // Fetching data on initial load with onMount svelte method
     onMount (() => {
@@ -42,6 +41,42 @@
                 console.log (err)
             })
     })
+
+    /*
+        // XXX Using await block
+    isLoading = true
+    // ################################################
+    // Fetching data from firebase
+    let getHobbies = fetch ("https://svelte-course-57736.firebaseio.com/hobbies.json")
+        .then (res => {
+            if (!res.ok) {
+                throw new Error ("Fetching Firebase Failed")
+            }
+            // ....
+            return res.json ()
+        })
+        .then (data => {
+            isLoading =false
+            // 1. common extracting data with fetch Object.values
+            hobbies = Object.values (data)
+
+            // 2. Using unique id's
+            let keys = Object.keys (data)
+            console.log (keys)
+
+            // 3.Using for in loop
+            for (let key in data) {
+                console.log (key, data[key])
+                //    hobbies =  data [key]
+            }
+            return hobbies
+        })
+        .catch (err => {
+            isLoading =false
+            console.log (err)
+        })
+     */
+
     function addHobby () {
         hobbies = [...hobbies, hobbyInput.value]
 
@@ -86,5 +121,20 @@
             {/each}
         </ul>
     {/if}
+
+    <!--
+        {#await getHobbies}
+            <p>Loading</p>
+        {:then hobbyData}
+            <ul>
+            {#each hobbies as hobby}
+                <li>{hobby}</li>
+            {/each}
+            </ul>
+        {:catch error}
+            <p>{error.message}</p>
+        {/await}
+    -->
+
 </main>
 
