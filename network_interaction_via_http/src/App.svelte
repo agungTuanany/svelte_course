@@ -1,5 +1,7 @@
 <script>
     import { onMount } from "svelte"
+    import hobbyStore from "./hobby-store.js"
+
 
     // ################################################
     let hobbies = []
@@ -24,7 +26,8 @@
             .then (data => {
                 isLoading =false
                 // 1. common extracting data with fetch Object.values
-                hobbies = Object.values (data)
+                // hobbies = Object.values (data)
+                hobbyStore.setHobbies (Object.values (data))
 
                 // 2. Using unique id's
                 let keys = Object.keys (data)
@@ -78,7 +81,8 @@
      */
 
     function addHobby () {
-        hobbies = [...hobbies, hobbyInput.value]
+        // hobbies = [...hobbies, hobbyInput.value]
+        hobbyStore.addHobby (hobbyInput.value)
 
         isLoading = true
         fetch ("https://svelte-course-57736.firebaseio.com/hobbies.json", {
@@ -95,6 +99,7 @@
             }
             // .....
             alert ("Saved Data")
+            // res.json () ===> Promise with an object that contains the id
         }).catch (err => {
             isLoading = false
             console.log (err)
@@ -116,7 +121,7 @@
         <p>Loading....</p>
     {:else}
         <ul>
-            {#each hobbies as hobby}
+            {#each $hobbyStore as hobby}
                 <li>{hobby}</li>
             {/each}
         </ul>
