@@ -130,7 +130,19 @@
     }
 
     function deleteMeetup () {
-        meetups.removeMeetup (id)
+        fetch (`https://svelte-course-57736.firebaseio.com/meetups/${id}.json`, {
+            method      : "DELETE"
+        })
+            .then ( res => {
+                if (!res.ok) {
+                    throw new Error ("DELETE method through server failed")
+                }
+                // Delete meetup
+                meetups.removeMeetup (id)
+            })
+            .catch (err => {
+                console.log (err)
+            })
         dispatch ("save")
     }
 

@@ -25,7 +25,21 @@
     // ############################################
     // Instant function
     function toggleFavorite () {
-        meetups.toggleFavorite (id)
+        fetch (`https://svelte-course-57736.firebaseio.com/meetups/${id}.json`, {
+            method          : "PATCH",
+            body            : JSON.stringify ({isFavorite: !isFav}),
+            headers         : { "Content-Type": "application/json" }
+        })
+            .then (res => {
+                if (!res.ok) {
+                    throw new Error ("PATCH toggle favorite through server failed")
+                }
+                // Update toggleFavortive into firebase (server)
+                meetups.toggleFavorite (id)
+            })
+            .catch (err => {
+                console.log (err)
+            })
     }
 
 </script>
