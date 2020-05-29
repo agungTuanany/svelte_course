@@ -65,6 +65,11 @@
 
 <svelte:window bind:scrollY={y} />
 <svlete:body on:mouseenter />
+
+<!--
+    svelte:head useful to adjust the head of page for SEO, setting the right meta tags
+    in the right title is extremely important
+-->
 <svelte:head>
     <title>{currentTitle}</title>
     <meta http-equiv="" content="">
