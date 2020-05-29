@@ -3,6 +3,7 @@
     import CartItem from "./CartItem.svelte"
     import FamilyNode from "./FamilyNode.svelte"
 
+    // #########################################################
     // Tree component
     let familyStructure = [
         {
@@ -28,6 +29,13 @@
 
     let renderedComponent = { cmp: Product, title: "Test Product", id: "p1" }
 
+    let y = undefined
+
+    let currentTitle = "Home Base Directory"
+
+    $: console.log ("scrollY value: ", y)
+
+    // #########################################################
     function toggle () {
         if (renderedComponent.cmp === Product) {
             renderedComponent = { cmp: CartItem, title: "Another test Product", id: "p2" }
@@ -41,11 +49,30 @@
     function oriToggle () {
         showProduct = !showProduct
     }
+
+    function switchTitle () {
+        currentTitle = "A new Title Home"
+
+    }
 </script>
 
 
 <style>
+    main {
+        height: 3000px
+    }
 </style>
+
+<svelte:window bind:scrollY={y} />
+<svlete:body on:mouseenter />
+<svelte:head>
+    <title>{currentTitle}</title>
+    <meta http-equiv="" content="">
+    <link rel="" href="" title="" type="">
+    <script charset="utf-8"></script>
+</svelte:head>
+<button on:click={switchTitle}>Switch Title</button>
+<hr>
 
 <main>
     <h1>Dynamic component</h1>
