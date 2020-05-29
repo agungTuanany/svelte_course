@@ -6,6 +6,7 @@
     import Button       from "./../UI/Button.svelte"
     import Badge        from "./../UI/Badge.svelte"
     import meetups      from "./meetup-store.js"
+    import LoadingSpinner from "./../UI/LoadingSpinner.svelte"
 
 
     // ############################################
@@ -22,9 +23,12 @@
 
     const dispatch = createEventDispatcher ()
 
+    let isLoading = false
+
     // ############################################
     // Instant function
     function toggleFavorite () {
+        isLoading = true
         fetch (`https://svelte-course-57736.firebaseio.com/meetups/${id}.json`, {
             method          : "PATCH",
             body            : JSON.stringify ({isFavorite: !isFav}),
@@ -35,9 +39,11 @@
                     throw new Error ("PATCH toggle favorite through server failed")
                 }
                 // Update toggleFavortive into firebase (server)
+                isLoading = false
                 meetups.toggleFavorite (id)
             })
             .catch (err => {
+                isLoading = false
                 console.log (err)
             })
     }
@@ -122,14 +128,19 @@
     </div>
     <footer>
         <Button mode="outline" type="button" on:click="{() => dispatch ("edit", id)}" >Edit</Button>
-        <Button type="button" on:click="{() => dispatch ("showdetails", id)}">Show Details</Button>
-        <Button
-            mode="outline"
-            color="{isFav ? null : "success"}"
-            type="button"
-            on:click="{toggleFavorite}">
-            {isFav ? 'Unfavorite' : 'Favorite'}
-        </Button>
+            {#if isLoading}
+                <!-- <LoadingSpinner /> -->
+                <span>Changing...</span>
+            {:else}
+                <Button type="button" on:click="{() => dispatch ("showdetails", id)}">Show Details</Button>
+                <Button
+                    mode="outline"
+                    color="{isFav ? null : "success"}"
+                    type="button"
+                    on:click="{toggleFavorite}">
+                    {isFav ? 'Unfavorite' : 'Favorite'}
+                </Button>
+            {/if}
     </footer>
 </article>
 

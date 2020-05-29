@@ -7,6 +7,7 @@
     import EditMeetup   from "./Meetups/EditMeetup.svelte"
     import MeetupDetail from "./Meetups/MeetupDetail.svelte"
     import LoadingSpinner from "./UI/LoadingSpinner.svelte"
+    import Error        from "./UI/Error.svelte"
 
     // ####################################################
     //let meetups = []
@@ -16,6 +17,7 @@
     let pageData    = {}
     let editedId    = null
     let isLoading   = true
+    let error       = null
 
 
     // ####################################################
@@ -43,6 +45,7 @@
             } , 1000)
         })
         .catch (err => {
+            error = err
             isLoading = false
             console.log (err)
         })
@@ -71,7 +74,10 @@
     function startEdit (event) {
         editMode = "edit"
         editedId = event.detail
+    }
 
+    function clearError () {
+        error = null
     }
 
 </script>
@@ -82,12 +88,20 @@
     }
 </style>
 
+{#if error}
+    <Error message={error.message} on:cancel={clearError} />
+{/if}
+
 <Header/>
 
 <main>
     {#if page === "overview"}
         {#if editMode === "edit"}
-            <EditMeetup id="{editedId}" on:save="{savedMeetup}" on:cancel="{cancelEdit}"/>
+            {#if error}
+                <Error message={error.message} on:cancel={clearError} />
+            {:else}
+                <EditMeetup id="{editedId}" on:save="{savedMeetup}" on:cancel="{cancelEdit}"/>
+            {/if}
         {/if}
         {#if isLoading}
             <LoadingSpinner />

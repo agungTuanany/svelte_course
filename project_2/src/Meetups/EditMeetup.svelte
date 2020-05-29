@@ -145,20 +145,16 @@
             })
         dispatch ("save")
     }
-
-
 </script>
 
 <style>
     form {
-        width: 30rem;
-        max-width: 90%;
-        margin: auto;
+        width       : 30rem;
+        max-width   : 90%;
+        margin      : auto;
     }
 
 </style>
-
-
 
 <Modal title="Edit Meetup Data" on:cancel>
     <form on:submit|preventDefault="{submitForm}" action="" method="post">
