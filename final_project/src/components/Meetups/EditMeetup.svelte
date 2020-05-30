@@ -6,8 +6,8 @@
     import TextInput    from "./../UI/TextInput.svelte"
     import Button       from "./../UI/Button.svelte"
     import Modal        from "./../UI/Modal.svelte"
-    import { isEmpty, isValidEmail }  from "./../helpers/validation.js"
-    import meetups      from "./meetup-store"
+    import { isEmpty, isValidEmail }  from "./../../helpers/validation.js"
+    import meetups      from "./../../store/meetup-store.js"
 
 
     // ############################################
