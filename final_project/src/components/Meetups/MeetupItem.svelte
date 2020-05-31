@@ -132,7 +132,7 @@
                 <!-- <LoadingSpinner /> -->
                 <span>Changing...</span>
             {:else}
-                <Button type="button" on:click="{() => dispatch ("showdetails", id)}">Show Details</Button>
+                <Button href="/{id}">Show Details</Button>
                 <Button
                     mode="outline"
                     color="{isFav ? null : "success"}"
