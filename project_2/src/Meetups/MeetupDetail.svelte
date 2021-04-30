@@ -1,20 +1,20 @@
 <script>
-    import { onDestroy, createEventDispatcher } from "svelte"
-    import meetups      from "./meetup-store.js"
-    import Button       from "./../UI/Button.svelte"
+    import { onDestroy, createEventDispatcher } from "svelte";
+    import meetups from "./meetup-store.js";
+    import Button from "./../UI/Button.svelte";
 
     // ################################################
     // Props
-    export let id
+    export let id;
 
-    let selectedMeetup = null
-    const dispatch = createEventDispatcher ()
+    let selectedMeetup = null;
+    const dispatch = createEventDispatcher();
 
     // ################################################
     // Instant functions
 
-    const unsubscribe = meetups.subscribe(items => {
-        selectedMeetup = items.find(i => i.id === id);
+    const unsubscribe = meetups.subscribe((items) => {
+        selectedMeetup = items.find((i) => i.id === id);
     });
 
     /*
@@ -23,10 +23,27 @@
      *  we would get live update automatically.
      */
 
-    onDestroy (() => unsubscribe ())
+    onDestroy(() => unsubscribe());
 </script>
 
+<section>
+    <div class="image">
+        <img src={selectedMeetup.imageUrl} alt={selectedMeetup.title} />
+    </div>
+    <div class="content">
+        <h1>{selectedMeetup.title}</h1>
+        <h2>{selectedMeetup.subtitle}</h2>
+        <h2>{selectedMeetup.time} - {selectedMeetup.address}</h2>
+        <p>{selectedMeetup.description}</p>
+        <Button href="mailto:{selectedMeetup.contactEmail}">Contact</Button>
+        <Button type="button" mode="outline" on:click={() => dispatch("close")}
+            >Close</Button
+        >
+    </div>
+</section>
+
 <style>
+/*{{{*/
     section {
         margin-top: 4rem;
     }
@@ -66,18 +83,5 @@
     p {
         font-size: 1.5rem;
     }
+/*}}}*/
 </style>
-
-<section>
-    <div class="image">
-        <img src="{selectedMeetup.imageUrl}" alt="{selectedMeetup.title}">
-    </div>
-    <div class="content">
-        <h1>{selectedMeetup.title}</h1>
-        <h2>{selectedMeetup.subtitle}</h2>
-        <h2>{selectedMeetup.time} - {selectedMeetup.address}</h2>
-        <p>{selectedMeetup.description}</p>
-        <Button href="mailto:{selectedMeetup.contactEmail}">Contact</Button>
-            <Button type="button" mode="outline" on:click="{() => dispatch ("close")}">Close</Button>
-    </div>
-</section>

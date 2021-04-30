@@ -1,22 +1,35 @@
 <script>
     // Dependecies
-    import { createEventDispatcher } from "svelte"
-    import { fly, fade } from "svelte/transition"
-    import Button from "./Button.svelte"
+    import { createEventDispatcher } from "svelte";
+    import { fly, fade } from "svelte/transition";
+    import Button from "./Button.svelte";
 
     // ####################################################
     // Props
-    export let title
+    export let title;
 
     // ####################################################
     //Instant functions
-    const dispatch = createEventDispatcher ()
+    const dispatch = createEventDispatcher();
 
-    const closeModal = () => dispatch ("cancel")
-
+    const closeModal = () => dispatch("cancel");
 </script>
 
+<div transition:fade class="modal-backdrop" on:click={closeModal} />
+<div transition:fly={{ y: 300 }} class="modal">
+    <h1>{title}</h1>
+    <div class="content">
+        <slot />
+    </div>
+    <footer>
+        <slot name="footer">
+            <Button on:click={closeModal}>Close</Button>
+        </slot>
+    </footer>
+</div>
+
 <style>
+    /*{{{*/
     .modal-backdrop {
         position: fixed;
         top: 0;
@@ -24,7 +37,7 @@
         width: 100%;
         height: 100vh;
         background: rgba(0, 0, 0, 0.75);
-        z-index: 10
+        z-index: 10;
     }
 
     .modal {
@@ -43,7 +56,7 @@
     h1 {
         padding: 1rem;
         margin: 0;
-        border-bottom: 1px solid #CCC;
+        border-bottom: 1px solid #ccc;
         font-family: "Roboto Slab", sans-serif;
     }
 
@@ -61,18 +74,5 @@
             left: calc(50% - 20rem);
         }
     }
-
+/*}}}*/
 </style>
-
-<div transition:fade class="modal-backdrop" on:click="{closeModal}"> </div>
-<div transition:fly={{y: 300}} class="modal">
-    <h1>{title}</h1>
-    <div class="content">
-        <slot />
-    </div>
-    <footer>
-        <slot name="footer">
-            <Button on:click="{closeModal}">Close</Button>
-        </slot>
-    </footer>
-</div>

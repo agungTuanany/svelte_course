@@ -1,6 +1,6 @@
 <script context="module">
     export async function preload({ params, query }) {
-        console.log ("Preloading a single post!..")
+        console.log("Preloading a single post!..");
         // the `slug` parameter is available because
         // this file is called [slug].svelte
         const res = await this.fetch(`blog/${params.slug}.json`);
@@ -18,6 +18,16 @@
     export let post;
 </script>
 
+<svelte:head>
+    <title>{post.title}</title>
+</svelte:head>
+
+<h1>{post.title}</h1>
+
+<div class="content">
+    {@html post.html}
+</div>
+
 <style>
     /*
        By default, CSS is locally scoped to the component,
@@ -27,14 +37,15 @@
        so we have to use the :global(...) modifier to target
        all elements inside .content
      */
-.content :global(h2) {
-    font-size: 1.4em;
-    font-weight: 500;
-}
+/*{{{*/
+    .content :global(h2) {
+        font-size: 1.4em;
+        font-weight: 500;
+    }
 
     .content :global(pre) {
         background-color: #f9f9f9;
-        box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
+        box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
         padding: 0.5em;
         border-radius: 2px;
         overflow-x: auto;
@@ -52,14 +63,5 @@
     .content :global(li) {
         margin: 0 0 0.5em 0;
     }
+/*}}}*/
 </style>
-
-<svelte:head>
-    <title>{post.title}</title>
-</svelte:head>
-
-<h1>{post.title}</h1>
-
-<div class='content'>
-    {@html post.html}
-</div>

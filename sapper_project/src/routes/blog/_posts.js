@@ -74,19 +74,19 @@ const posts = [
                     <li>Links are just <code>&lt;a&gt;</code> elements, rather than framework-specific <code>&lt;Link&gt;</code> components. That means, for example, that <a href='blog/how-can-i-get-involved'>this link right here</a>, despite being inside a blob of HTML, works with the router as you'd expect.</li>
                     </ul>
                         `
-                        },
+    },
 
-                        {
-                            title: 'How can I get involved?',
-                                slug: 'how-can-i-get-involved',
-                                html: `
+    {
+        title: 'How can I get involved?',
+        slug: 'how-can-i-get-involved',
+        html: `
             <p>We're so glad you asked! Come on over to the <a href='https://github.com/sveltejs/svelte'>Svelte</a> and <a href='https://github.com/sveltejs/sapper'>Sapper</a> repos, and join us in the <a href='https://svelte.dev/chat'>Discord chatroom</a>. Everyone is welcome, especially you!</p>
         `
-                        }
-                        ];
+    }
+];
 
-                        posts.forEach(post => {
-                            post.html = post.html.replace(/^\t{3}/gm, '');
-                        });
+posts.forEach(post => {
+    post.html = post.html.replace(/^\t{3}/gm, '');
+});
 
-                        export default posts;
+export default posts;

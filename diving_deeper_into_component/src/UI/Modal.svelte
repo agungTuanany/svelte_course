@@ -1,39 +1,65 @@
 <script>
-    import { createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte"
+    import {
+        createEventDispatcher,
+        onMount,
+        onDestroy,
+        beforeUpdate,
+        afterUpdate,
+    } from "svelte";
 
     // ###############################################
-    const dispatch = createEventDispatcher ()
-    const dispatchClose = () => dispatch ("close")
-    const dispatchCancel = () => dispatch ("cancel")
+    const dispatch = createEventDispatcher();
+    const dispatchClose = () => dispatch("close");
+    const dispatchCancel = () => dispatch("cancel");
 
     // ###############################################
-    let agreed = false
-    let autoscroll = false
+    let agreed = false;
+    let autoscroll = false;
 
     //const slotBtnDisclaimer = () =>  agreed = true
-    function slotBtnDisclaimer () {
-        return agreed = true
+    function slotBtnDisclaimer() {
+        return (agreed = true);
     }
 
-    onMount (() =>  console.log ("onMount"))
+    onMount(() => console.log("onMount"));
 
-    onDestroy (() => console.log ("onDestroy"))
+    onDestroy(() => console.log("onDestroy"));
 
-    beforeUpdate (() => {
-        console.log ("beforeUpdate")
-        autoscroll = agreed
-    })
-    afterUpdate (() => {
-        console.log ("afterUpdate")
+    beforeUpdate(() => {
+        console.log("beforeUpdate");
+        autoscroll = agreed;
+    });
+
+    afterUpdate(() => {
+        console.log("afterUpdate");
         if (autoscroll) {
-            const modal = document.querySelector (".modal")
-            modal.scrollTo (0, modal.scrollHeight)
+            const modal = document.querySelector(".modal");
+            modal.scrollTo(0, modal.scrollHeight);
         }
-    })
+    });
 
-    console.log ("Script executed")
-
+    console.log("Script executed");
 </script>
+
+<div class="backdrop" on:click={dispatchClose} />
+<div class="modal">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Slot -->
+    <header>
+        <slot name="header" />
+    </header>
+    <div class="content">
+        <slot />
+    </div>
+    <div class="disclaimer">
+        <p>Before you close, you need to agree to our terms.</p>
+        <button type="" on:click={slotBtnDisclaimer}>Agree</button>
+    </div>
+    <footer>
+        <slot name="footer" didAgree={agreed}>
+            <button on:click={dispatchCancel} disabled={!agreed}>Close</button>
+        </slot>
+    </footer>
+</div>
 
 <style>
     .backdrop {
@@ -64,24 +90,3 @@
         border-bottom: 1px solid #ccc;
     }
 </style>
-
-<div class="backdrop" on:click="{dispatchClose}"></div>
-<div class="modal">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Slot -->
-    <header>
-        <slot name="header" />
-    </header>
-    <div class="content">
-        <slot />
-    </div>
-    <div class="disclaimer">
-        <p>Before you close, you need to agree to our terms.</p>
-        <button type="" on:click="{slotBtnDisclaimer}">Agree</button>
-    </div>
-    <footer>
-        <slot name="footer" didAgree="{agreed}">
-        <button on:click="{dispatchCancel}" disabled={!agreed}>Close</button>
-        </slot>
-    </footer>
-
-</div>

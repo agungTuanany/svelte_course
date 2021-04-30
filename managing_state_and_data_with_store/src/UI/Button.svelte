@@ -1,8 +1,13 @@
 <script>
-    export let mode
+    export let mode;
 </script>
 
+<button class={mode} type="button" on:click>
+    <slot />
+</button>
+
 <style>
+/*{{{*/
     button {
         font: inherit;
         border: 1px solid #cf0056;
@@ -54,8 +59,5 @@
         background: transparent;
         color: #ccc;
     }
+/*}}}*/
 </style>
-
-<button class="{mode}" type="button" on:click>
-    <slot />
-</button>

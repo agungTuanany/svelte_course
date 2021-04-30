@@ -1,20 +1,33 @@
 <script>
     import Button from "./../UI/Button.svelte";
-    import cartItems from "./../Cart/cart-store.js"
+    import cartItems from "./../Cart/cart-store.js";
 
-    export let id
-    export let title
-    export let price
-    export let info
-    export let description
+    export let id;
+    export let title;
+    export let price;
+    export let info;
+    export let description;
 
     function addToCart() {
         //cartItems.set([])
-        cartItems.addItem ({ id: id, title: title, price: price })
+        cartItems.addItem({ id: id, title: title, price: price });
     }
 </script>
 
+<div class="product">
+    <div>
+        <h1>{title}</h1>
+        <h2>{price}</h2>
+        <h2>{info}</h2>
+        <p>{description}</p>
+    </div>
+    <div>
+        <Button on:click={addToCart}>Add to Cart</Button>
+    </div>
+</div>
+
 <style>
+/*{{{*/
     .product {
         background: white;
         border-radius: 5px;
@@ -40,16 +53,5 @@
     p {
         margin: 0;
     }
+/*}}}*/
 </style>
-
-<div class="product">
-    <div>
-        <h1>{title}</h1>
-        <h2>{price}</h2>
-        <h2>{info}</h2>
-        <p>{description}</p>
-    </div>
-    <div>
-        <Button on:click={addToCart}>Add to Cart</Button>
-    </div>
-</div>

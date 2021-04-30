@@ -1,18 +1,20 @@
 <script context="module">
     /*
-    * this.fetch() is provided by sappers work on server and client side
-    * preload() can run both in server and client side
-    */
+     * this.fetch() is provided by sappers work on server and client side
+     * preload() can run both in server and client side
+     */
     export function preload({ params, query }) {
-        console.log ("Preloading....")
-        return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
-            return { posts: posts };
-        });
+        console.log("Preloading....");
+        return this.fetch(`blog.json`)
+            .then((r) => r.json())
+            .then((posts) => {
+                return { posts: posts };
+            });
     }
 </script>
 
 <script>
-    import { onMount } from "svelte"
+    import { onMount } from "svelte";
 
     export let posts;
 
@@ -24,24 +26,15 @@
      * Cause on nodeJS there is no fetch function.
      */
 
-
     // This preload run on server and client side
-    console.log ("Executed from server")
+    console.log("Executed from server");
 
-
-    onMount (() => {
+    onMount(() => {
         // onMount only run on client side
         // fetch ()
-        console.log ("mounted into client side only")
-    })
+        console.log("mounted into client side only");
+    });
 </script>
-
-<style>
-    ul {
-        margin: 0 0 1em 0;
-        line-height: 1.5;
-    }
-</style>
 
 <svelte:head>
     <title>Blog</title>
@@ -55,6 +48,13 @@
             tell Sapper to load the data for the page as soon as
             the user hovers over the link or taps it, instead of
             waiting for the 'click' event -->
-            <li><a rel='prefetch' href='blog/{post.slug}'>{post.title}</a></li>
+        <li><a rel="prefetch" href="blog/{post.slug}">{post.title}</a></li>
     {/each}
 </ul>
+
+<style>
+    ul {
+        margin: 0 0 1em 0;
+        line-height: 1.5;
+    }
+</style>

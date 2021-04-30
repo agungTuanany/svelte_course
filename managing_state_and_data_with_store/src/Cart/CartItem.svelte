@@ -1,17 +1,17 @@
 <script>
-    import cartItems    from "./cart-store.js"
-    import { products } from "./../Products/product-store.js"
-    import Button       from "./../UI/Button.svelte"
+    import cartItems from "./cart-store.js";
+    import { products } from "./../Products/product-store.js";
+    import Button from "./../UI/Button.svelte";
 
     // #####################################
     // Props
-    export let title
-    export let price
-    export let id
-    export let info
+    export let title;
+    export let price;
+    export let id;
+    export let info;
 
-    let showDescription  = false
-    let description = "Not available"
+    let showDescription = false;
+    let description = "Not available";
     // let fetchedProducts = []
 
     // #####################################
@@ -21,15 +21,14 @@
     //     fetchedProducts = prods
     // })
 
-
-    const displayDescription = () =>{
-        showDescription = !showDescription
+    const displayDescription = () => {
+        showDescription = !showDescription;
         // description = fetchedProducts.find (p => p.id === id).description
-        const unsubscribe = products.subscribe (prods => {
-            description = prods.find (p => p.id === id).description
-        })
-        unsubscribe ()
-    }
+        const unsubscribe = products.subscribe((prods) => {
+            description = prods.find((p) => p.id === id).description;
+        });
+        unsubscribe();
+    };
 
     // const removeFromCart = () => {
     //     cartItems.update (items => {
@@ -37,32 +36,10 @@
     //     })
     // }
 
-    function removeFromCart () {
-        cartItems.removeItem (id)
+    function removeFromCart() {
+        cartItems.removeItem(id);
     }
 </script>
-
-<style>
-    li {
-        margin: 1rem 0;
-        border-radius: 5px;
-        background: white;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-        padding: 1rem
-    }
-
-    h1,
-    h2 {
-        font-size: 1rem;
-        margin: 0;
-    }
-
-    h2 {
-        color: #494949;
-        margin-bottom: 1rem
-    }
-</style>
-
 
 <li>
     <h1>{title}</h1>
@@ -76,3 +53,24 @@
         <p>{description}</p>
     {/if}
 </li>
+
+<style>
+    li {
+        margin: 1rem 0;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        padding: 1rem;
+    }
+
+    h1,
+    h2 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    h2 {
+        color: #494949;
+        margin-bottom: 1rem;
+    }
+</style>

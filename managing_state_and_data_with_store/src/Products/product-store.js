@@ -1,18 +1,18 @@
 import { writable } from "svelte/store"
 
-export const products = writable ([
+export const products = writable([
     {
-        id          : "p1",
-        title       : "A Book",
-        price       : 9.99,
-        description : "A great book!",
-        info        : "updating from Products.svelte"
+        id: "p1",
+        title: "A Book",
+        price: 9.99,
+        description: "A great book!",
+        info: "updating from Products.svelte"
     },
     {
-        id          : "p2",
-        title       : "A Carpet",
-        price       : 99.99,
-        description : "Red and green.",
-        info        : "updating from Products.svelte"
+        id: "p2",
+        title: "A Carpet",
+        price: 99.99,
+        description: "Red and green.",
+        info: "updating from Products.svelte"
     }
 ])

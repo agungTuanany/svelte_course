@@ -39,28 +39,28 @@ import { writable } from "svelte/store"
 //
 // export default createCart ()
 
-const cart = writable ([
+const cart = writable([
     {
-        id      : "p3",
-        title   : "CartItems svelte",
-        price   : 9.99,
-        info    : "updating cart-item from cart-item.js"
+        id: "p3",
+        title: "CartItems svelte",
+        price: 9.99,
+        info: "updating cart-item from cart-item.js"
     },
     {
-        id      : "p4",
-        title   : "Svelte cart items",
-        price   : 9.99,
-        info    : "updating cart-item from cart-item.js"
+        id: "p4",
+        title: "Svelte cart items",
+        price: 9.99,
+        info: "updating cart-item from cart-item.js"
     }
 ])
 
 const customCart = {
-    subscribe       : cart.subscribe,
-    addItem         : (item) => {
-        cart.update ((items) => [...items, item])
+    subscribe: cart.subscribe,
+    addItem: (item) => {
+        cart.update((items) => [...items, item])
     },
-    removeItem      : (id) => {
-        cart.update ((items) => items.filter (i => i.id !== id))
+    removeItem: (id) => {
+        cart.update((items) => items.filter(i => i.id !== id))
     }
 }
 

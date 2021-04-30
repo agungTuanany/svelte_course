@@ -1,13 +1,33 @@
 <script>
-    export let userName
-    export let jobTitle
-    export let userImage
-    export let description
+    export let userName;
+    export let jobTitle;
+    export let userImage;
+    export let description;
 
-    const initialName = userName
+    const initialName = userName;
 </script>
 
+<!-- markup -->
+<div class="contact-card">
+    <header>
+        <div class={userImage === true ? "thumb" : "thumb thumb-placeholder"}>
+            <img src={userImage} alt="" />
+        </div>
+        <div class="user-data">
+            <h1>{userName} | {initialName}</h1>
+            <h2>{jobTitle}</h2>
+        </div>
+    </header>
+    <div class="description">
+        <p>A short description</p>
+        <p>{@html description}</p>
+    </div>
+</div>
+
+<!-- end markup -->
+
 <style>
+/*{{{*/
     .contact-card {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
         max-width: 30rem;
@@ -66,24 +86,5 @@
         border-top: 1px solid #ccc;
         padding: 1rem;
     }
-
+/*}}}*/
 </style>
-
-<!-- markup -->
-<div class="contact-card">
-    <header>
-        <div class="{userImage === true ? "thumb" : "thumb thumb-placeholder"}">
-            <img src="{userImage}" alt="">
-        </div>
-        <div class="user-data">
-            <h1>{userName} | {initialName}</h1>
-            <h2>{jobTitle}</h2>
-        </div>
-    </header>
-    <div class="description">
-        <p>A short description</p>
-        <p>{@html description}</p>
-    </div>
-</div>
-
-<!-- end markup -->

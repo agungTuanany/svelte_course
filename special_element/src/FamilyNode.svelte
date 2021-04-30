@@ -1,41 +1,32 @@
 <script context="module">
     /*
-    * the context module script is useful if sharing data across all the same type component.
-    * e.g: across all FamilyNode.
-    */
-    console.log ("Runs Once")
+     * the context module script is useful if sharing data across all the same type component.
+     * e.g: across all FamilyNode.
+     */
+    console.log("Runs Once");
 
-    let deactiveNode = undefined
+    let deactiveNode = undefined;
 </script>
+
 <script>
-    export let member
+    export let member;
 
-    let isActive = undefined
+    let isActive = undefined;
 
-    console.log ("runs multiple times")
+    console.log("runs multiple times");
 
-    function setAsActive () {
+    function setAsActive() {
         if (deactiveNode) {
-            deactiveNode ()
+            deactiveNode();
         }
-        isActive = true
+        isActive = true;
         deactiveNode = deactivate;
-
     }
 
-    function deactivate () {
-        isActive = false
+    function deactivate() {
+        isActive = false;
     }
-
 </script>
-
-<style>
-    .active {
-        color: #CF0056;
-    }
-</style>
-
-
 
 <!-- NOTE: how to render familyNode from inside familyNode
     Recursive component is really useful if rendering such a folder structure or
@@ -55,3 +46,9 @@
         </ul>
     {/if}
 </div>
+
+<style>
+    .active {
+        color: #cf0056;
+    }
+</style>
